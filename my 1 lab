@@ -10,7 +10,7 @@ main ()
   if (d == 0)
 	{
 	  x = (-b + sqrt (d)) / (2 * a);
-	  printf ("x = %lf", x);
+	  printf ("One root: x = %lf", x);
 	}
   if (d > 0)
 	{
