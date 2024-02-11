@@ -1,24 +1,42 @@
 #include <stdio.h>
 #include <math.h>
 double a = 5, b = 6, c = 1, x1, x2, x, d;
-int
-main ()
-{
+int one_or_zero; 
+
+int main ()
+{ printf("enter the digit: ");
+  scanf("%i", &one_or_zero);
+  if (one_or_zero == 1)
+  {do 
+  { printf("enter value a: ");
+    scanf("%lf", &a);
+    printf("enter value b: ");
+    scanf("%lf", &b);
+    printf("enter value c: ");
+    scanf("%lf", &c);
+
   d = b * b - 4 * a * c;
   x1 = (-b + sqrt (d)) / (2 * a);
   x2 = (-b - sqrt (d)) / (2 * a);
+
   if (d == 0)
 	{
-	  x = (-b + sqrt (d)) / (2 * a);
-	  printf ("One root: x = %lf", x);
+	  x = -b / (2 * a);
+	  printf ("One root: x = %lf\n", x);
 	}
   if (d > 0)
 	{
-	  printf ("d = %lf\nx1 = %lf\nx2 = %lf", d, x1, x2);
+	  printf ("d = %lf\nx1 = %lf\nx2 = %lf\n", d, x1, x2);
 	}
   if (d < 0)
 	{
-	  printf ("there're no roots!");
-	}
-  return 0;
+	  printf ("there're no roots!\n");
+	} 
+} while (one_or_zero);
+}
+if (one_or_zero == 0)
+ { printf ("Programm is over");
+   return 0;
+ }
+ return 0;
 }
