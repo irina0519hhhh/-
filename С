@@ -3,7 +3,11 @@ int main()
 {   int c, n, res;
     printf("Enter your value: "); 
     scanf("%i %i", &c, &n);
-    res = c * n;
+if (c >= n){ 
+    res = c / n;
     printf("res = %i", res);
-    return 0;
+}else{
+printf("cannot solve the ex!");
+return 0;
+}
 }
