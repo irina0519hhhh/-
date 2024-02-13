@@ -1,7 +1,9 @@
 #include <stdio.h>
-
 int main()
-{
-    printf("Hello, world"); 
-
+{   int c, n, res;
+    printf("Enter your value: "); 
+    scanf("%i %i", &c, &n);
+    res = c * n;
+    printf("res = %i", res);
     return 0;
+}
