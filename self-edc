@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <math.h>
+/* Запрограммировать квадрат разности : 
+Числа а, bвводятся с клавиатуры. */
+
+int main ()
+{   double a, b, res;
+    res = pow((a-b), 2);
+    printf("Enter your value \'a': ");
+    scanf("%lf", &a);
+    printf("Enter your value \'b': ");
+    scanf("%lf", &b);
+    printf ("Вычисляем квадрат разности по формуле: res = a**2 - 2*a*b + b**2\n");
+    printf ("res = %lf", res);
+    return 0;
+}
