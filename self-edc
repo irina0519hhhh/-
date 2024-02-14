@@ -10,7 +10,7 @@ int main ()
     scanf("%lf", &a);
     printf("Enter your value \'b': ");
     scanf("%lf", &b);
-    printf ("Вычисляем квадрат разности по формуле: res = a**2 - 2*a*b + b**2\n");
+    printf ("Вычисляем квадрат разности по формуле: sq_dif = a**2 - 2*a*b + b**2\n");
     printf ("res = %lf", res);
     return 0;
 }
