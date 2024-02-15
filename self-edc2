@@ -10,6 +10,6 @@ int a = 10, b = 4;
 double del;
 int main()
 { del = a/b;
-    printf("Devision result is: %lf", del);
+    printf("\'a', \'b' devision result is: %lf", del);
     return 0;
 }
