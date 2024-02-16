@@ -5,22 +5,33 @@
 */
 
 double matrix1[9], a11, a12, a13, a21, a22, a23, a31, a32, a33, sum_gen, sum_sec;
+int one_or_zero;
 
 int main ()
-{printf ("enter your first row: \n");
-scanf("%lf %lf %lf", &a11, &a12, &a13);
+{printf("enter the digit: ");
+  scanf("%i", &one_or_zero);
+  if (one_or_zero == 1)
+  {do 
+  { printf ("enter your first row: \n");
+    scanf("%lf %lf %lf", &a11, &a12, &a13);
 
-printf ("enter your second row: \n");
-scanf("%lf %lf %lf", &a21, &a22, &a23);
+    printf ("enter your second row: \n");
+    scanf("%lf %lf %lf", &a21, &a22, &a23);
 
-printf ("enter your third row: \n");
-scanf("%lf %lf %lf", &a31, &a32, &a33);
-
-sum_gen = a11 + a22 + a33;
-sum_sec = a13 + a22 + a31;
-printf("sum_gen = %lf\n", sum_gen);
-printf("sum_sec = %lf", sum_sec);
-return 0;
+    printf ("enter your third row: \n");
+    scanf("%lf %lf %lf", &a31, &a32, &a33);
+    
+    sum_gen = a11 + a22 + a33;
+    sum_sec = a13 + a22 + a31;
+    printf("sum_gen = %lf\n", sum_gen);
+    printf("sum_sec = %lf\n", sum_sec);
+  } while (one_or_zero);
+}
+if (one_or_zero == 0)
+ { printf ("Programm is over");
+   return 0;
+ }    
+    return 0;
 }
 
 
@@ -30,29 +41,38 @@ return 0;
 
 #include <stdio.h>
 
-
-int matrix2[4], i, a11, a12, a21, a22, sq11, sq12, sq21, sq22, square[4];
+int matrix2[4], i, a11, a12, a21, a22, sq11, sq12, sq21, sq22, square[4], one_or_zero;
 
 int main ()
-{printf ("enter your first row: \n");
-scanf("%d %d", &a11, &a12);
+{printf("enter the digit: ");
+  scanf("%i", &one_or_zero);
+  if (one_or_zero == 1)
+  {do 
+  { printf ("enter your first row: \n");
+    scanf("%d %d", &a11, &a12);
 
-printf ("enter your second row: \n");
-scanf("%d %d", &a21, &a22);
+    printf ("enter your second row: \n");
+    scanf("%d %d", &a21, &a22);
 
-sq11 = a11*a11+a12*a21;
-sq21 = a21*a11+a22*a21;
-sq12 = a11*a12+a12*a22;
-sq22 = a21*a12+a22*a22;
-
-
-square[0] = sq11;
-square[1] = sq12;
-square[2] = sq21;
-square[3] = sq22;
-
-printf("\n");
-printf("%d  %d\n%d %d", square[0], square[1], square[2], square[3]);
-
+    sq11 = a11*a11+a12*a21;
+    sq21 = a21*a11+a22*a21;
+    sq12 = a11*a12+a12*a22;
+    sq22 = a21*a12+a22*a22;
+    
+    
+    square[0] = sq11;
+    square[1] = sq12;
+    square[2] = sq21;
+    square[3] = sq22;
+    
+    printf("\n");
+    printf("%d  %d\n%d %d\n", square[0], square[1], square[2], square[3]);
+      
+  } while (one_or_zero);
+}
+if (one_or_zero == 0)
+ { printf ("Programm is over");
+   return 0;
+ }   
 return 0;
 }
