@@ -4,32 +4,47 @@
 расположенных на главной диагонали и сумму элементов, расположенных на  побочной диагонали.
 */
 
-#include <stdio.h>
-
 int main ()
-{ double matrix1[9], a11, a12, a13, a21, a22, a23, a31, a32, a33, sum_gen, sum_sec;
-    int one_or_zero;
-    do{
-    printf ("enter your first row: \n");
-    scanf("%lf %lf %lf", &a11, &a12, &a13);
-    printf ("enter your second row: \n");
-    scanf("%lf %lf %lf", &a21, &a22, &a23);
-    printf ("enter your third row: \n");
-    scanf("%lf %lf %lf", &a31, &a32, &a33);
-    sum_gen = a11 + a22 + a33;
-    sum_sec = a13 + a22 + a31;
-    printf("sum_gen = %lf\n", sum_gen);
-    printf("sum_sec = %lf\n", sum_sec);
-    
+{   int n = 3;
+    double mas[n][n], sum_main = 0, sum_off = 0;
+    int one_or_zero = 1;
+    do
+    {
+        for (int i = 0; i < n; i++)
+        for (int k = 0; k < n; k++)
+            {
+                printf("mas[%d][%d] = ", i + 1, k + 1);
+                scanf("%lf", &mas[i][k]);
+            }
+            printf("\nEntered matrix is:\n");
+            for (int i = 0; i < n; i++)
+            {
+                for (int k = 0; k < n; k++)
+                {
+                    printf("%lf  ", mas[i][k]);
+                }
+                printf("\n");
+            }
+            for (int i = 0; i < n; i++)
+            {
+                sum_main += mas[i][i];
+                sum_off += mas[i][(n-1)-i];
+            }
+    printf("The main diagonal sum is: %lf\n", sum_main);
+    printf("The side diagonal sum is: %lf\n", sum_off);
     printf("enter 1 to continue or 0 to end: ");
-    scanf("%i", &one_or_zero);
-  } while (one_or_zero);
-    if (one_or_zero == 0)
- { printf ("Programm is over");
-   return 0;
- }
- return 0;
+    scanf("%d", &one_or_zero);
+    }while (one_or_zero);
+    if (!one_or_zero)
+    {
+        printf("Programm is over!");
+    }
+    return 0;
 }
+
+
+
+
 
 
 
