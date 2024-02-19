@@ -66,11 +66,11 @@ int main ()
     printf ("enter your second row: \n");
     scanf("%d %d", &a21, &a22);
 
-    sq11 = a11*a11+a12*a21;
+   /* sq11 = a11*a11+a12*a21;
     sq21 = a21*a11+a22*a21;
     sq12 = a11*a12+a12*a22;
     sq22 = a21*a12+a22*a22;
-    
+    */
     
     square[0] = sq11;
     square[1] = sq12;
