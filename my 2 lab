@@ -52,8 +52,8 @@ int main ()
 
 int main ()
 
-{  
-    int n = 2, arr[n][n], one_or_zero = 1, massive[n][n];
+{
+    int n = 2, arr[n][n], one_or_zero = 1, matrix[n][n];
     do 
     { 
         for (int i = 0; i < n; i++)
@@ -74,16 +74,16 @@ int main ()
                     printf("\n");
                 }
                 printf("New one is: \n");
-                for (int i = 0; i < 2; i++) 
+                for (int i = 0; i < n; i++) 
                 {
                     for (int k = 0; k < n; k++) 
                     {
-                        massive[i][k] = 0;
+                        matrix[i][k] = 0;
                         for (int j = 0; j < n; j++) 
                         {
-                            massive[i][j] += arr[j][k] * arr[k][j];
+                            matrix[i][k] += arr[i][j] * arr[j][k];
                         }
-                        printf("%d ", massive[i][k]);
+                        printf("%d ", matrix[i][k]);
                     }
                     printf("\n");
                 }
