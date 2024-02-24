@@ -73,17 +73,20 @@ int main ()
                     }
                     printf("\n");
                 }
-                printf("New one is: \n");
-                for (int i = 0; i < n; i++)
-                {
-/*                    for (int k = 0; k < n; k++)
-                    {
-                        massive[n][n] = 0;
-                        massive[n][n] *= arr[i][k] + arr[k][i];
-                        printf("%d  ", massive[n][n]);
-                    }*/
-                    printf("\n");
-                }
+printf("New one is: \n");
+for (int i = 0; i < n; i++)
+for(int j = 0; j < n; j++)
+{
+massive[i][j] = 1;
+for(int k = 0; k < n; k++)
+{
+massive[i][j] *= arr[i][k] + arr[k][i];
+printf("%d  ", massive[i][j]);
+}
+printf("\n");
+} 
+printf("\n");
+}
     printf("\nenter 1 to continue or 0 to end: ");
     scanf("%d", &one_or_zero);
   } while (one_or_zero);
