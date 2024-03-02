@@ -3,15 +3,20 @@
 
 #include <stdio.h>
 #include <ctype.h>
+#include <string.h>
 
 int main()
 {
     char str, result;
-    scanf ("%s", &str);
-    for (int i = 0; str[i]; i++)
+    scanf ("%c", &str);
+    if (strlen(str) <= 80)
     {
-        result = tolower(str[i]);
-        printf("tolower(%c) = %c\n", str, result);
-        return 0;
+        str[0] = toupper(str[0]);
+        for (int i = 0; i < strlen(str); i++)
+        {
+            result = toupper(str[i]);
+            printf("tolower(%c) = %c\n", str, result);
+            return 0;
+        }
     }
 }
