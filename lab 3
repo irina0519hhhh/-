@@ -7,15 +7,15 @@
 
 int main()
 {
-    char str, result;
+    char str[80], result;
     scanf ("%c", &str);
-    if (strlen(str) <= 80)
+    if (sizeof(str) <= 80)
     {
         str[0] = toupper(str[0]);
-        for (int i = 0; i < strlen(str); i++)
+        for (int i = 0; i < sizeof(str); i++)
         {
             result = toupper(str[i]);
-            printf("tolower(%c) = %c\n", str, result);
+            printf("toupper(%c) = %c\n", str, result);
             return 0;
         }
     }
