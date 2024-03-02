@@ -8,14 +8,14 @@
 int main()
 {
     char str[80], result;
-    scanf ("%c", &str);
+    scanf ("%s", &str);
     if (sizeof(str) <= 80)
     {
         str[0] = toupper(str[0]);
         for (int i = 0; i < sizeof(str); i++)
         {
             result = toupper(str[i]);
-            printf("toupper(%c) = %c\n", str, result);
+            printf("toupper(%s) = %s\n", str, result);
             return 0;
         }
     }
