@@ -6,8 +6,6 @@
 #include <stdio.h> 
 #include "perimeter_tr.h"
 
-double per_tr (double a, double b, double c); /* func prototype */
-
 int main()
 {
     scanf("%d\n %d\n %d\n", &a, &b, &c);
