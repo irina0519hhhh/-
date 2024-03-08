@@ -2,8 +2,7 @@
 Ввести с консоли строку символов произвольной длины (до 80 символов). Поменять в ней все маленькие символы ‘a’ и ‘b’ на заглавные и вывести на консоль полученную строку.*/
 
 #include <stdio.h>
-#include <ctype.h>
-#include <string.h>
+#include <stdlib.h>
 
 int main()
 {
@@ -19,4 +18,43 @@ int main()
             return 0;
         }
     }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int main() {
+char input[80];
+fgets(input, 80, stdin);
+int len = strlen(input);
+for (int i = 0; i < len; i++) {
+    if (input[i] >= 'a' && input[i] <= 'z') {
+        input[i] -= 32;
+    } else if (input[i] == 'A' || input[i] == 'B') {
+        input[i] += 32;
+    }
+}
+
+printf("%s", input);
+
+return 0;
 }
