@@ -6,5 +6,5 @@ double per_tr (double a, double b, double c)
   {
       return 0;
   }
-  return a + b + c
+  return a + b + c;
 }
