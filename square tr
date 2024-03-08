@@ -8,7 +8,7 @@
     {
         return 0;
     }
-    p = per_tr/2
-    s = sqrt(p*(p-a)*(p-b)*(p-c))
-    return s
+    p = per_tr/2;
+    s = sqrt(p*(p-a)*(p-b)*(p-c));
+    return s;
  } 
