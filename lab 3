@@ -3,30 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
-int main()
-{
-    char str[80], result;
-    scanf ("%s", &str);
-    if (sizeof(str) <= 80)
-    {
-        str[0] = toupper(str[0]);
-        for (int i = 0; i < sizeof(str); i++)
-        {
-            result = toupper(str[i]);
-            printf("toupper(%s) = %s\n", str, result);
-            return 0;
-        }
-    }
-}
-
-
-
-
-
-
-
-
+#include <string.h>
 
 int main() {
 char input[80];
@@ -39,32 +16,3 @@ for (int i = 0; i < len; i++) {
         input[i] += 32;
     }
 }
-
-printf("%s", input);
-
-return 0;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#include "stdio.h"
-int main(){ 
-char s[81];
-if(fgets(s,81,stdin))for(int i=0;s[i];i++)if(s[i]=='a'||s[i]=='b')s[i]-=32;
-puts(s); return 0;} 
