@@ -9,10 +9,10 @@
 
 
 int main()
-{
-    double a, b, c;                                                     /* Ввод длин сторон треугольника с консоли
+{                                                  
+    extern per_tr(a, b, c); 
     printf(“Введите длины сторон треугольника (a, b, c):\n”);
-    scanf("%d\n %d\n %d\n", per_tr(&a, &b, &c);
+    scanf("%d\n %d\n %d\n", per_tr(&a, &b, &c);                /* Ввод длин сторон треугольника с консоли
     printf("perimeter is = %lf\n", per_tr(a, b, c);
     return 0;
 }
@@ -23,7 +23,7 @@ int main()
 
 int main()
 {
-    double a, b, c;                                                     /* Ввод длин сторон треугольника с консоли
+    extern sq_tr(a, b, c);                                       /* Ввод длин сторон треугольника с консоли
     printf(“Введите длины сторон треугольника (a, b, c):\n”);
     scanf("%d\n %d\n %d\n", sq_tr(&a, &b, &c);
     printf("square is = %lf\n", sq_tr(a, b, c);
