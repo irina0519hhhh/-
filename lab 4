@@ -5,7 +5,7 @@
 
 /* ПЕРИМЕТР */
 #include <stdio.h> 
-#include "perimeter_tr.h"
+#include <perimeter_tr.h>
 
 
 int main()
@@ -19,7 +19,7 @@ int main()
 
 /* ПЛОЩАДЬ */
 #include <stdio.h> 
-#include "square_tr.h"
+#include <square_tr.h>
 
 int main()
 {
