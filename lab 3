@@ -28,20 +28,6 @@ int main()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 int main() {
 char input[80];
 fgets(input, 80, stdin);
@@ -58,3 +44,27 @@ printf("%s", input);
 
 return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include "stdio.h"
+int main(){ 
+char s[81];
+if(fgets(s,81,stdin))for(int i=0;s[i];i++)if(s[i]=='a'||s[i]=='b')s[i]-=32;
+puts(s); return 0;} 
