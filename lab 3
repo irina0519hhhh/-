@@ -5,14 +5,20 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main() {
-char input[80];
-fgets(input, 80, stdin);
-int len = strlen(input);
+int main() 
+{
+char row[80];
+fgets(row, 80, stdin);
+int len = strlen(row);
 for (int i = 0; i < len; i++) {
-    if (input[i] >= 'a' && input[i] <= 'z') {
-        input[i] -= 32;
-    } else if (input[i] == 'A' || input[i] == 'B') {
-        input[i] += 32;
+    if (row[i] >= 'a' && row[i] <= 'z') {
+        row[i] -= 32;
+    } else if (row[i] == 'A' || row[i] == 'B') {
+        row[i] += 32;
     }
+}
+
+printf("%s", row);
+
+return 0;
 }
