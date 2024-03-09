@@ -9,7 +9,7 @@ double area_triangle(double a, double b, double c) {
 double s = (a + b + c) / 2;
 return sqrt(s * (s - a) * (s - b) * (s - c));
 }
-// Функция для проверки неравенства треугольника
+// Функ проверки неравенства треугольника
 int validate_triangle(double side_a, double side_b, double side_c) 
 {
 if (side_a + side_b > side_c && side_a + side_c > side_b && side_b + side_c > side_a) 
@@ -20,6 +20,6 @@ return 0;
 }
 }
 int main() {
-// Ввод длин сторон треугольника с консоли
+// Ввод длин сторон тр-ка с консоли
 double side_a, side_b, side_c;
 printf(“Введите длины сторон треугольника (a, b, c):\n”);
