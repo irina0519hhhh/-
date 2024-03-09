@@ -27,7 +27,7 @@ double per_tr (double a, double b, double c)
 
 
 // Функция для проверки неравенства треугольника
-int validate_triangle(double a, double b, double c) {
+bool validate_triangle(double a, double b, double c) {
 if (a + b > c && a + c > b && b + c > a) 
 {
     return 1;
