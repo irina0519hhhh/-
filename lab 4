@@ -9,9 +9,16 @@
 
 int main()
 {                                                  
+    extern validate_triangle(a, b, c);
     extern per_tr(a, b, c); 
     printf(“Введите длины сторон треугольника (a, b, c):\n”);
     scanf("%d\n %d\n %d\n", per_tr(&a, &b, &c);                /* Ввод длин сторон треугольника с консоли
     printf("perimeter and square are = %lf\n", per_tr(a, b, c);
+
+    extern sq_tr(a, b, c); 
+    printf(“Введите длины сторон треугольника (a, b, c):\n”);
+    scanf("%d\n %d\n %d\n", per_tr(&a, &b, &c);                /* Ввод длин сторон треугольника с консоли
+    printf("perimeter and square are = %lf\n", per_tr(a, b, c);
+
     return 0;
 }
