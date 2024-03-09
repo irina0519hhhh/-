@@ -27,10 +27,12 @@ double per_tr (double a, double b, double c)
 
 
 // Функция для проверки неравенства треугольника
-int validate_triangle(double side_a, double side_b, double side_c) {
-if (side_a + side_b > side_c && side_a + side_c > side_b && side_b + side_c > side_a) {
-return 1;
-} else {
-return 0;
+int validate_triangle(double a, double b, double c) {
+if (a + b > c && a + c > b && b + c > a) 
+{
+    return 1;
+} else 
+{
+    return 0;
 }
 }
