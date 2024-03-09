@@ -13,19 +13,6 @@ int main()
     extern per_tr(a, b, c); 
     printf(“Введите длины сторон треугольника (a, b, c):\n”);
     scanf("%d\n %d\n %d\n", per_tr(&a, &b, &c);                /* Ввод длин сторон треугольника с консоли
-    printf("perimeter is = %lf\n", per_tr(a, b, c);
-    return 0;
-}
-
-/* ПЛОЩАДЬ */
-#include <stdio.h> 
-#include <square_tr.h>
-
-int main()
-{
-    extern sq_tr(a, b, c);                                       /* Ввод длин сторон треугольника с консоли
-    printf(“Введите длины сторон треугольника (a, b, c):\n”);
-    scanf("%d\n %d\n %d\n", sq_tr(&a, &b, &c);
-    printf("square is = %lf\n", sq_tr(a, b, c);
+    printf("perimeter and square are = %lf\n", per_tr(a, b, c);
     return 0;
 }
