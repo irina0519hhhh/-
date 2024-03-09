@@ -5,7 +5,7 @@
 
 /* ПЕРИМЕТР */
 #include <stdio.h> 
-#include "perimeter_tr.h" 
+#include "FUNCTIONS_tr.h" 
 
 
 int main()
