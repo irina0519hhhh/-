@@ -17,7 +17,7 @@ int main()
 
     extern sq_tr(a, b, c); 
     printf(“Введите длины сторон треугольника (a, b, c):\n”);
-    scanf("%d\n %d\n %d\n", per_tr(&a, &b, &c);                /* Ввод длин сторон треугольника с консоли
+    scanf("%d\n %d\n %d\n", sq_tr(&a, &b, &c);                /* Ввод длин сторон треугольника с консоли
     printf("square is = %lf\n", sq_tr(a, b, c);
 
     return 0;
