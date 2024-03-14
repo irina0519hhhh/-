@@ -1,3 +1,10 @@
-/*Описание функции (прототип)*/
+// Описания функций //
 
+// Прототип 1 //
 double per_tr (double a, double b, double c)
+
+
+// Прототип 2 //
+double sq_tr (double per_tr, double a, double b, double c)
+
+// Прототип 3 //
