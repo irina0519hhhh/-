@@ -1,1 +1,3 @@
+/*Описание функции (прототип)*/
 
+double per_tr (double a, double b, double c)
