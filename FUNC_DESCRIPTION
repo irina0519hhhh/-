@@ -1,10 +1,12 @@
 // Описания функций //
 
-// Прототип 1 //
+// Прототип функции для нахождения периметра треугольника //
 double per_tr (double a, double b, double c)
 
 
-// Прототип 2 //
+// Прототип функции для нахождения площади треугольника //
 double sq_tr (double per_tr, double a, double b, double c)
 
-// Прототип 3 //
+
+// Прототип функции для проверки неравенства треугольника
+bool validate_triangle(double a, double b, double c) 
