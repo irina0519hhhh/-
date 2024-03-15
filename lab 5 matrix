@@ -33,5 +33,6 @@ int main()
                 printf("Enter "+", "-" or "*");
                 scanf("%s", &sign);
             }
+//переменная - pointer для одной из функций
     return 0;
 }
