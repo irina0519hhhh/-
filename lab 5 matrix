@@ -20,10 +20,16 @@ int main()
             printf("mass1[%lf][%lf]", i+1, j+1);
             scanf("%lf", &mass1[i][j]);
         }
-        if (sign == "+" || sign == "-" || sign == "*")
-        {
-            printf("Enter "+", "-" or "*");
-            scanf("%s", &sign);
-        }
+        for (int k = 0; k < n; k++)
+            for(int t = 0; t < n; t++)
+            {
+                printf("mass2[%lf][%lf]", k+1, t+1);
+                scanf("%lf", &mass2[k][t]);
+            }
+            if (sign == "+" || sign == "-" || sign == "*")
+            {
+                printf("Enter "+", "-" or "*");
+                scanf("%s", &sign);
+            }
     return 0;
 }
