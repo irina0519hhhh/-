@@ -9,7 +9,7 @@
 double **mass_sum(double **mass1, double **mass2, int&) 
 {
     double **result;
-    result = (double **)malloc(sizeof(double *) * n);
+    result = (double **)malloc(n * sizeof(double));
     for (i = 0; i < n; i++) 
 {
         result[i] = (double *)malloc(n * sizeof(double));
@@ -26,7 +26,7 @@ double **mass_sum(double **mass1, double **mass2, int&)
 
 
 // Функция для вычисления разности матриц
-double **mass_sum(double **mass1, double **mass2, int&) 
+double **mass_sum(double **mass1, double **mass2, int&mass1, int&mass2) 
 {
     double **result;
     result = (double **)malloc(n * sizeof(double *));
@@ -42,6 +42,7 @@ double **mass_sum(double **mass1, double **mass2, int&)
     }
     return result;
 }
+
 
 // Функция для вычисления поизведения матриц
 
