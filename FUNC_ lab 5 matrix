@@ -8,17 +8,18 @@
 
 double **mass_sum(double mass1[n][n], double mass2[n][n]) 
 {
-    int i, j, **result;
+    double **result;
+    int i, j;
     result = (double **)malloc(sizeof(double *) * n);
     for (i = 0; i < n; i++) 
 {
-        result[i] = (double *)malloc(sizeof(double) * N);
+        result[i] = (double *)malloc(n * sizeof(double));
     }
 
-    for (i = 0; i < n; i++) {
-        for (j = 0; j < n; j++) {
-            result[i][j] = mass1[i][j] + mass2[i][j];
-        }
+    for (i = 0; i < n; i++) 
+        for (j = 0; j < n; j++) 
+    {
+        result[i][j] = mass1[i][j] + mass2[i][j];
     }
     return result;
 }
