@@ -6,17 +6,17 @@
 
 // Функция для вычисления суммы матриц
 
-double **mass_sum(double **mass1, double **mass2, int&) 
+double **mass_sum(double **mass1, double **mass2, int n,int m) 
 {
     double **result;
     result = (double **)malloc(n * sizeof(double));
     for (i = 0; i < n; i++) 
 {
-        result[i] = (double *)malloc(n * sizeof(double));
+        result[i] = (double *)malloc(m * sizeof(double));
     }
 
     for (int i = 0; i < n; i++) 
-        for (int j = 0; j < n; j++) 
+        for (int j = 0; j < m; j++) 
     {
         result[i][j] = mass1[i][j] + mass2[i][j];
     }
@@ -46,7 +46,7 @@ double **mass_sum(double **mass1, double **mass2, int&mass1, int&mass2)
 
 // Функция для вычисления поизведения матриц
 
-double **mass_sum(double **mass1, double **mass2) 
+double **mass_sum(double **mass1, double **mass2, int n, int m) 
 {
     double **result;
     int i, j;
