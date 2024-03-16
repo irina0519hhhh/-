@@ -6,7 +6,7 @@
 
 // Функция для вычисления суммы матриц
 
-double **mass_sum(double mass1[n][n], double mass2[n][n]) 
+double **mass_sum(double **mass1, double **mass2, int&) 
 {
     double **result;
     result = (double **)malloc(sizeof(double *) * n);
@@ -21,14 +21,15 @@ double **mass_sum(double mass1[n][n], double mass2[n][n])
         result[i][j] = mass1[i][j] + mass2[i][j];
     }
     return result;
+
 }
 
 
 // Функция для вычисления разности матриц
-double **mass_sum(double mass1[n][n], double mass2[n][n]) 
+double **mass_sum(double **mass1, double **mass2, int&) 
 {
     double **result;
-    result = (double **)malloc(sizeof(double *) * n);
+    result = (double **)malloc(n * sizeof(double *));
     for (int i = 0; i < n; i++) 
 {
         result[i] = (double *)malloc(n * sizeof(double));
@@ -44,11 +45,11 @@ double **mass_sum(double mass1[n][n], double mass2[n][n])
 
 // Функция для вычисления поизведения матриц
 
-double **mass_sum(double mass1[n][n], double mass2[n][n]) 
+double **mass_sum(double **mass1, double **mass2) 
 {
     double **result;
     int i, j;
-    result = (double **)malloc(sizeof(double *) * n);
+    result = (double **)malloc(n * sizeof(double));
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
     {
