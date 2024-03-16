@@ -20,7 +20,7 @@ double **mass_sum(double **mass1, double **mass2, int n,int m)
     {
         result[i][j] = mass1[i][j] + mass2[i][j];
     }
-    return result;
+    return result1;
 
 }
 
@@ -40,7 +40,7 @@ double **mass_min(double **mass1, double **mass2, int n, int m)
     {
         result[i][j] = mass1[i][j] - mass2[i][j];
     }
-    return result;
+    return result2;
 }
 
 
@@ -60,5 +60,5 @@ double **mass_pr(double **mass1, double **mass2, int n,int m)
     {
         result[i][j] += mass1[i][j] * mass2[i][j];
     }
-    return result;
+    return result3;
 }
