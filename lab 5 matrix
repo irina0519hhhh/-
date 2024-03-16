@@ -34,8 +34,7 @@ int main()
                 if (sign == "+")
                 {  
                     **mass_sum(double **mass1, double **mass2, int n,int m) 
-                    printf("sum is = %lf\n", result1(a, b, c); pointer для одной из функций
-
+                    printf("sum is = %lf\n", result1(a, b, c); 
                 }
                  if (sign == "-")
                 {
