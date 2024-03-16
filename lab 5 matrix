@@ -12,10 +12,16 @@
 
 int main()
 {
-    double **pa, n, mas1[n][n], mas2[n][n];
+    double **sum, **mas1, **mas2;
+    int n;
     char sign;
     printf("Enter n: ");
-    scanf("%lf", &n);
+
+    scanf("%d", &n);
+
+
+
+
     for (int i = 0; i < n; i++)
         for(int j = 0; i < n; i++)
         {
@@ -33,6 +39,6 @@ int main()
                 printf("Enter "+", "-" or "*");
                 scanf("%s", &sign);
             }
-//переменная - pointer для одной из функций
+            doublr * //переменная - pointer для одной из функций
     return 0;
 }
