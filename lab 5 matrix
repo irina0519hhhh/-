@@ -12,14 +12,13 @@
 
 int main()
 {
-    double **sum, **mas1, **mas2;
     int n;
     char sign;
     printf("Enter n: ");
 
     scanf("%d", &n);
 
-
+ double **sum, **mas1, **mas2;
 
 
     for (int i = 0; i < n; i++)
