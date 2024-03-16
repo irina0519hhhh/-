@@ -29,12 +29,21 @@ int main()
                 printf("mass2[%lf][%lf]", k+1, t+1);
                 scanf("%lf", &mass2[k][t]);
             }
-            if (sign == "+" || sign == "-" || sign == "*")
-            {
                 printf("Enter "+", "-" or "*");
                 scanf("%s", &sign);
-            }
-            doublr * //переменная - pointer для одной из функций
+                if (sign == "+")
+                {  
+                    printf("sum is = %lf\n", result1(a, b, c); pointer для одной из функций
+
+                }
+                 if (sign == "-")
+                {
+                     printf("min is = %lf\n", result1(a, b, c);
+                }
+                 if (sign == "*")
+                {
+                     printf("pr is = %lf\n", result3(a, b, c);
+                }
     return 0;
 for (int i = 0; i < n; i ++)
 {
