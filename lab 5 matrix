@@ -18,7 +18,7 @@ int main()
 
     scanf("%d", &n);
 
- double **sum, **mas1, **mas2;
+ double **sum, **min, **pr **mas1, **mas2;
 
 
     for (int i = 0; i < n; i++)
@@ -40,4 +40,9 @@ int main()
             }
             doublr * //переменная - pointer для одной из функций
     return 0;
+for (int i = 0; i < n; i ++)
+{
+     free (sum[i]);
+}
+    free (result);
 }
