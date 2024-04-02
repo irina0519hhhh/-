@@ -9,44 +9,63 @@
 
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
 
 int main()
 {
     int n;
-    char sign;
+    char sign; 
+	int i, j, k, t, m;
     printf("Enter n: ");
     scanf("%d", &n);
-    double **sum, **min, **pr **mass1, **mass2, **result1, **result2, **result3;
-    for (int i = 0; i < n; i++)
-        for(int j = 0; i < n; i++)
+    double **sum, **min, **pr, **mass1, **mass2, **result, **result1, **result2, **result3;
+    mass1 = (double**)malloc(m*sizeof(double*));
+    for(i = 0; i < m; i++)
+    {
+        mass1[i] = (double*)malloc(n*sizeof(double));
+        mass1[n][n];
+    }
+        mass2 = (double**)malloc(m*sizeof(double*));
+        for(i = 0; i < m; i++)
         {
-            printf("mass1[%lf][%lf]", i+1, j+1);
-            scanf("%lf", &mass1[i][j]);
-        }
-        for (int k = 0; k < n; k++)
-            for(int t = 0; t < n; t++)
-            {
-                printf("mass2[%lf][%lf]", k+1, t+1);
-                scanf("%lf", &mass2[k][t]);
-            }
-                printf("Enter "+", "-" or "*");
-                scanf("%s", &sign);
-                if (sign == "+")
-                {  
-                    result1 = mass_sum(double **mass1, double **mass2, int n,int m) 
-                    printf("sum is = %lf\n", ........); //написать функцию вывода матрицы на экран
-                }
-                 if (sign == "-")
+            mass2[i] = (double*)malloc(n*sizeof(double));
+            mass2[n][n];
+        }    
+            for (i = 0; i < n; i++)
+                for(j = 0; i < n; i++)
                 {
-                    result2 = mass_min(double **mass1, double **mass2, int n,int m) 
-                    printf("min is = %lf\n", .......);
+                    printf("mass1[%d][%d]", i+1, j+1);
+                    scanf("%lf", &mass1[i][j]);
                 }
-                 if (sign == "*")
-                {
-                    result3 = mass_pr(double **mass1, double **mass2, int n,int m) 
-                    printf("pr is = %lf\n", ........);
-                }
-    return 0;
+                for (k = 0; k < n; k++)
+                    for(t = 0; t < n; t++)
+                    {
+                        printf("mass2[%d][%d]", k+1, t+1);
+                        scanf("%lf", &mass2[k][t]);
+                    }
+                        printf("Enter '+', '-' or '*'");
+                        scanf("%s", &sign);
+                        if (sign == '+')
+                        {  
+                            result1 = mass_sum(double **mass1, double **mass2, int n, int m); 
+                            **print_matr;
+                            printf("sum is = %d\n", print_matr(result1, int n, int m)); 
+                        }
+                         if (sign == '-')
+                        {
+                            result2 = mass_min(double **mass1, double **mass2, int n, int m); 
+                            ** print_matr;
+                            printf("min is = %d\n", print_matr(result2, int n, int m));
+                        }
+                         if (sign == '*')
+                        {
+                            result3 = mass_pr(double **mass1, double **mass2, int n, int m);
+                            **print_matr;
+                            printf("pr is = %d\n", print_matr(result3, int n, int m));
+                        }
+            return 0;
 for (int i = 0; i < n; i ++)
 {
      free (sum[i]);
@@ -61,3 +80,4 @@ for (int i = 0; i < n; i ++)
     free (mass1); 
     free (mass2);
 }
+
