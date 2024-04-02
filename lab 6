@@ -12,8 +12,9 @@
 
 int main ()
 {
-  char line[256];
-   int len;
+  char s[5], line[256]; 
+  int substr;
+  size_t len;
   FILE *f1;
   f1 = fopen("lab6.txt", "rt");
  /* fprintf(f1, "Иванов Петр Сергеевич 1975\nСидоров Николай Андреевич 1981\nВоробьянинов Ипполит Матвеевич 1978\nИванов Петр Сергеевич 1975\nСидоров Николай Андреевич 1981\nВоробьянинов Ипполит Матвеевич 1978\nИванов Петр Сергеевич 1975\nСидоров Николай Андреевич 1981\nВоробьянинов Ипполит Матвеевич 1908");
@@ -23,19 +24,23 @@ int main ()
         // пока не дойдем до конца, считываем 
         while((fgets(line, 256, f1)))
         {
-            printf("%s", line);
+            // printf("%s", line);
             for (int i = 0; i < strlen(line); i++)
             {
-               len = strlen(line);
-               printf("%d\n", strlen(line));
+                for (int substr = 0; substr < strlen(line); substr++)
+                {
+                    len = strlen(line);
+                 substr = len-5;
+                 strncpy(s, &line[substr], 5);
+                 printf("%s", s);
+                 }
             }
-            break;
         }
-    } 
+    }
   fclose(f1);
   
 //   f1 = fopen("lab6666.txt", "wt");
-//   fprintf(f1, "%s", line);
+//   fprintf(f1, "%s", s);
   
 //   fclose(f1);
   return 0;
