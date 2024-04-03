@@ -36,37 +36,36 @@ int main()
         {
             mass2[i] = (double*)malloc(n*sizeof(double));
         }    
+
     for (i = 0; i < n; i++){
 	for(j = 0; i < n; i++){
 	    printf("mass1[%d][%d]", i+1, j+1);
 	    scanf("%lf", &mass1[i][j]);
 	}
 }
-	for (k = 0; k < n; k++)
-	    for(t = 0; t < n; t++)
-	    {
+	for (k = 0; k < n; k++){
+	    for(t = 0; t < n; t++){
 		printf("mass2[%d][%d]", k+1, t+1);
 		scanf("%lf", &mass2[k][t]);
 	    }
-
-
+}
 
 		printf("Enter '+', '-' or '*'");
 		scanf("%s", &sign);
 		if (sign == '+')
 		{  
-		    result1 = 
-		    printf("sum is = %lf\n", mass_sum(n, mass1, mass2)); 
+		    result1 = mass_sum(n, mass1, mass2)); 
+                    print_matrix(n, result1);
 		}
 		 if (sign == '-')
 		{
-		    result2 = mass_min(double **mass1, double **mass2, int n, int m); 
-		    printf("min is = %lf\n", print_matr(double **result2, int n, int m));
+		    result2 = mass_min(n, mass1, mass2)); 
+                    print_matrix(n, result2);
 		}
 		 if (sign == '*')
 		{
-		    result3 = mass_pr(double **mass1, double **mass2, int n, int m); 
-		    printf("pr is = %lf\n", print_matr(double **result3, int n, int m));
+		    result3 = mass_pr(n, mass1, mass2); 
+                    print_matrix(n, result3);
 		}
     return 0;
 for (int i = 0; i < n; i++)
