@@ -8,6 +8,7 @@
 double** mass_sum(double **mass1, double **mass2, int n) 
 {
     double **result;
+    int i, j;
     result = (double **)malloc(n * sizeof(double*));
     for (int i = 0; i < n; i++) 
 	{
@@ -30,6 +31,7 @@ double** mass_sum(double **mass1, double **mass2, int n)
 double **mass_min(double **mass1, double **mass2, int n) 
 {
     double **result;
+    int i, j;
     result = (double **)malloc(n * sizeof(double *));
     for (int i = 0; i < n; i++) 
 {
@@ -51,6 +53,7 @@ double **mass_min(double **mass1, double **mass2, int n)
 double **mass_pr(double **mass1, double **mass2, int n,int m) 
 {
     double **result;
+    int i, j;
     result = (double **)malloc(n * sizeof(double));
     for (int i = 0; i < n; i++) 
 {
