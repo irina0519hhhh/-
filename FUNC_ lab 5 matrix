@@ -61,16 +61,30 @@ double **mass_pr(double **mass1, double **mass2, int n,int m)
     return result3;
 }
 
+
+
+/* PRINT MATRIX CALL*/
+print_matrix(int size, int** matrix)
+{
+	for (i = 0; i < size; i++){
+		for (j = 0; j < size; j++){
+			scanf("%lf", &matrix[i][j]);
+	}
+}
+}
+
+
+
+
 /* print matrix 1 */
 printf("Print matrix mass1: \n");
 for (i = 0; i < n; i++){
 	for (j = 0; j < n; j++){
 		printf("%lf", mass1[i][j]);
+	}
+	print("\n");
 }
-print("\n");
-}
-
-
+return 0;
 
 /* print matrix 2 */
 printf("Print matrix mass2: \n");
@@ -80,3 +94,5 @@ for (i = 0; i < n; i++){
 }
 print("\n");
 }
+return 0;
+
