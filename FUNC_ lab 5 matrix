@@ -62,10 +62,21 @@ double **mass_pr(double **mass1, double **mass2, int n,int m)
 }
 
 /* print matrix 1 */
-printf("Print matrix mass1: \n")
-print_matrix(n, mass1);
+printf("Print matrix mass1: \n");
+for (i = 0; i < n; i++){
+	for (j = 0; j < n; j++){
+		printf("%lf", mass1[i][j]);
+}
+print("\n");
+}
 
 
-/*  print matrix 2 */
-printf("Print matrix mass1: \n")
-print_matrix(n, mass2);
+
+/* print matrix 2 */
+printf("Print matrix mass2: \n");
+for (i = 0; i < n; i++){
+	for (j = 0; j < n; j++){
+		printf("%lf", mass2[i][j]);
+}
+print("\n");
+}
