@@ -5,26 +5,29 @@
 
 
 /* Matrix addition function*/
-
-double **mass_sum(double **mass1, double **mass2, int n, int m) 
+double** mass_sum(double **mass1, double **mass2, int n) 
 {
     double **result;
-    result = (double **)malloc(n * sizeof(double));
+    result = (double **)malloc(n * sizeof(double*));
     for (int i = 0; i < n; i++) 
 	{
-        result[i] = (double *)malloc(m * sizeof(double));
-    }
-    for (int i = 0; i < n; i++) 
-        for (int j = 0; j < m; j++) 
-    {
+		result[i] = (double *)malloc(n * sizeof(double));
+	}
+    for (int i = 0; i < n; i++){
+        for (int j = 0; j < m; j++){
         result[i][j] = mass1[i][j] + mass2[i][j];
     }
-    return result1;
+    return result;
 }
 
 
+
+
+
+
+
 /* Matrix subtraction func */
-double **mass_min(double **mass1, double **mass2, int n, int m) 
+double **mass_min(double **mass1, double **mass2, int n) 
 {
     double **result;
     result = (double **)malloc(n * sizeof(double *));
@@ -42,8 +45,9 @@ double **mass_min(double **mass1, double **mass2, int n, int m)
 }
 
 
-/* Matrix multiplication  func */
 
+
+/* Matrix multiplication  func */
 double **mass_pr(double **mass1, double **mass2, int n,int m) 
 {
     double **result;
@@ -63,15 +67,19 @@ double **mass_pr(double **mass1, double **mass2, int n,int m)
 
 
 
+
+
+
 /* PRINT MATRIX CALL*/
-print_matrix(int size, int** matrix)
+print_matrix(int n, double** matrix)
 {
-	for (i = 0; i < size; i++){
+	for (i = 0; i < n; i++){
 		for (j = 0; j < size; j++){
 			scanf("%lf", &matrix[i][j]);
 	}
 }
 }
+
 
 
 
@@ -85,6 +93,10 @@ for (i = 0; i < n; i++){
 	print("\n");
 }
 return 0;
+
+
+
+
 
 /* print matrix 2 */
 printf("Print matrix mass2: \n");
