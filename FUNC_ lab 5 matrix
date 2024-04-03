@@ -17,7 +17,7 @@ double** mass_sum(double **mass1, double **mass2, int n)
         for (int j = 0; j < m; j++){
         result[i][j] = mass1[i][j] + mass2[i][j];
     }
-    return result;
+    return result1;
 }
 
 
