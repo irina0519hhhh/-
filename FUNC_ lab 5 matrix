@@ -6,15 +6,14 @@
 
 /* Matrix addition function*/
 
-double **mass_sum(double **mass1, double **mass2, int n,int m) 
+double **mass_sum(double **mass1, double **mass2, int n, int m) 
 {
     double **result;
     result = (double **)malloc(n * sizeof(double));
-    for (i = 0; i < n; i++) 
-{
+    for (int i = 0; i < n; i++) 
+	{
         result[i] = (double *)malloc(m * sizeof(double));
     }
-
     for (int i = 0; i < n; i++) 
         for (int j = 0; j < m; j++) 
     {
@@ -64,17 +63,16 @@ double **mass_pr(double **mass1, double **mass2, int n,int m)
 
 /* Matrix print func */
 
- double Print(double result[n][n], int m, int n)
+ double print_matr(double **result1[n][n], int n, int m)
 {
     int i, j;
-    for (i = 0; i < m; i++)
+    for (i = 0; i < n; i++)
     {
-        for (j = 0; j < n; j++)
+        for (j = 0; j < m; j++)
+        {
             printf("%d", result[i][j]);
+        }
         printf("\n");
     }
-    return 0;
-}* mass2[i][j];
-    }
-    return result3;
+return 0;
 }
