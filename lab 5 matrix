@@ -23,14 +23,14 @@ int main()
     printf("Enter n: ");
     scanf("%d", &n);
 
-   //выделяем память для матрицы 1 
+   //РІС‹РґРµР»СЏРµРј РїР°РјСЏС‚СЊ РґР»СЏ РјР°С‚СЂРёС†С‹ 1 
     mass1 = (double**)malloc(n*sizeof(double*));
     for(i = 0; i < n; i++)
     {
         mass1[i] = (double*)malloc(n*sizeof(double));
     }
 
-    //выделяем память  для матрицы 2 
+    //РІС‹РґРµР»СЏРµРј РїР°РјСЏС‚СЊ  РґР»СЏ РјР°С‚СЂРёС†С‹ 2 
      mass2 = (double**)malloc(n*sizeof(double*));
      for(i = 0; i < n; i++)
         {
@@ -50,22 +50,28 @@ int main()
 	    }
 }
 
+        //Р·Р°РїРѕР»РЅРµРЅРёРµ РјР°С‚СЂРёС†
+        printf("Enter mass1 values: ");
+        print_matrix(int n, double **mass1);
+        printf("Enter mass2 values: ");
+        print_matrix(int n, double **mass2);
+
 		printf("Enter '+', '-' or '*'");
 		scanf("%s", &sign);
 		if (sign == '+')
 		{  
-		    result1 = mass_sum(n, mass1, mass2)); 
-                    print_matrix(n, result1);
+		    mass_sum(n, mass1, mass2); 
+            printf (print_matrix(n, result1);
 		}
 		 if (sign == '-')
 		{
-		    result2 = mass_min(n, mass1, mass2)); 
-                    print_matrix(n, result2);
+		    mass_min(n, mass1, mass2); 
+            print_matrix(n, result2);
 		}
 		 if (sign == '*')
 		{
-		    result3 = mass_pr(n, mass1, mass2); 
-                    print_matrix(n, result3);
+		    mass_pr(n, mass1, mass2); 
+            print_matrix(n, result3);
 		}
     return 0;
 for (int i = 0; i < n; i++)
