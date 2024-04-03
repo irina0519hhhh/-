@@ -16,23 +16,29 @@
 int main()
 {
     int n;
-    char sign; 
-	int i, j, k, t, m;
+    char sign;
+    int i, j, k, t, m;
+    double **sum, **min, **pr, **mass1, **mass2, **result, **result1, **result2, **result3;
     printf("Enter n: ");
     scanf("%d", &n);
-    double **sum, **min, **pr, **mass1, **mass2, **result, **result1, **result2, **result3;
-    mass1 = (double**)malloc(m*sizeof(double*));
-    for(i = 0; i < m; i++)
+
+   //выделяем память для матрицы 1 
+    mass1 = (double**)malloc(n*sizeof(double*));
+    for(i = 0; i < n; i++)
     {
         mass1[i] = (double*)malloc(n*sizeof(double));
-        mass1[n][n];
     }
-        mass2 = (double**)malloc(m*sizeof(double*));
-        for(i = 0; i < m; i++)
+
+    //выделяем память  для матрицы 2 
+     mass2 = (double**)malloc(n*sizeof(double*));
+     for(i = 0; i < n; i++)
         {
             mass2[i] = (double*)malloc(n*sizeof(double));
-            mass2[n][n];
         }    
+
+
+
+
             for (i = 0; i < n; i++)
                 for(j = 0; i < n; i++)
                 {
