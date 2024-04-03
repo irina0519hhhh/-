@@ -61,18 +61,11 @@ double **mass_pr(double **mass1, double **mass2, int n,int m)
     return result3;
 }
 
-/* Matrix print func */
+/* print matrix 1 */
+printf("Print matrix mass1: \n")
+print_matrix(n, mass1);
 
- double print_matr(double **result1[n][n], int n, int m)
-{
-    int i, j;
-    for (i = 0; i < n; i++)
-    {
-        for (j = 0; j < m; j++)
-        {
-            printf("%d", result[i][j]);
-        }
-        printf("\n");
-    }
-return 0;
-}
+
+/*  print matrix 2 */
+printf("Print matrix mass1: \n")
+print_matrix(n, mass2);
