@@ -7,107 +7,69 @@
 /* Matrix addition function*/
 double** mass_sum(double **mass1, double **mass2, int n) 
 {
-    double **result;
+    double **result1;
     int i, j;
-    result = (double **)malloc(n * sizeof(double*));
+    result1 = (double **)malloc(n * sizeof(double*));
     for (int i = 0; i < n; i++) 
 	{
-		result[i] = (double *)malloc(n * sizeof(double));
+		result1[i] = (double *)malloc(n * sizeof(double));
 	}
     for (int i = 0; i < n; i++){
-        for (int j = 0; j < m; j++){
-        result[i][j] = mass1[i][j] + mass2[i][j];
+        for (int j = 0; j < n; j++){
+        result1[i][j] = mass1[i][j] + mass2[i][j];
+        }
     }
-    return result1;
+return result1;
 }
-
-
-
-
-
-
 
 /* Matrix subtraction func */
 double **mass_min(double **mass1, double **mass2, int n) 
 {
-    double **result;
+    double **result2;
     int i, j;
-    result = (double **)malloc(n * sizeof(double *));
-    for (int i = 0; i < n; i++) 
-{
-        result[i] = (double *)malloc(n * sizeof(double));
+    result2 = (double **)malloc(n * sizeof(double *));
+    for ( i = 0; i < n; i++) 
+    {
+        result2[i] = (double *)malloc(n * sizeof(double));
     }
-
-    for (int i = 0; i < n; i++) 
+    for ( i = 0; i < n; i++) 
         for (int j = 0; j < n; j++) 
     {
-        result[i][j] = mass1[i][j] - mass2[i][j];
+        result2[i][j] = mass1[i][j] - mass2[i][j];
     }
     return result2;
 }
 
-
-
-
 /* Matrix multiplication  func */
-double **mass_pr(double **mass1, double **mass2, int n,int m) 
+double **mass_pr(double **mass1, double **mass2, int n) 
 {
-    double **result;
+    double **result3;
     int i, j;
-    result = (double **)malloc(n * sizeof(double));
-    for (int i = 0; i < n; i++) 
-{
-        result[i] = (double *)malloc(m * sizeof(double));
-    }
-
-    for (int i = 0; i < n; i++) 
-        for (int j = 0; j < m; j++) 
+    result3 = (double **)malloc(n * sizeof(double));
+    for ( i = 0; i < n; i++) 
     {
-        result[i][j] += mass1[i][j] * mass2[i][j];
+        result3[i] = (double *)malloc(n * sizeof(double));
+    }
+    for ( i = 0; i < n; i++) 
+        for ( j = 0; j < n; j++) 
+    {
+        result3[i][j] += mass1[i][j] * mass2[i][j];
     }
     return result3;
 }
 
 
-
-
-
-
 /* PRINT MATRIX CALL*/
-print_matrix(int n, double** matrix)
+void print_matrix(int n, double** matrix)
 {
-	for (i = 0; i < n; i++){
-		for (j = 0; j < n; j++){
-			scanf("%lf", &matrix[i][j]);
-	}
+    int i, j;
+	for ( i = 0; i < n; i++){
+		for ( j = 0; j < n; j++){
+			printf(" %lf", matrix[i][j]);
+    	}
+	    printf("\n");
+    }
 }
-}
 
 
-
-
-
-/* print matrix 1 */
-printf("Print matrix mass1: \n");
-for (i = 0; i < n; i++){
-	for (j = 0; j < n; j++){
-		printf("%lf", mass1[i][j]);
-	}
-	print("\n");
-}
-return 0;
-
-
-
-
-
-/* print matrix 2 */
-printf("Print matrix mass2: \n");
-for (i = 0; i < n; i++){
-	for (j = 0; j < n; j++){
-		printf("%lf", mass2[i][j]);
-}
-print("\n");
-}
-return 0;
 
