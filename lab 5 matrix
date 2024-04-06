@@ -11,7 +11,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
+#include <string.h>
+#include "FUNC"
 
 int main()
 {
@@ -22,69 +23,73 @@ int main()
     printf("Enter n: ");
     scanf("%d", &n);
 
-   //РІС‹РґРµР»СЏРµРј РїР°РјСЏС‚СЊ РґР»СЏ РјР°С‚СЂРёС†С‹ 1 
+   //выделяем память для матрицы 1 
     mass1 = (double**)malloc(n*sizeof(double*));
     for(i = 0; i < n; i++)
     {
         mass1[i] = (double*)malloc(n*sizeof(double));
     }
 
-    //РІС‹РґРµР»СЏРµРј РїР°РјСЏС‚СЊ  РґР»СЏ РјР°С‚СЂРёС†С‹ 2 
+    //выделяем память  для матрицы 2 
      mass2 = (double**)malloc(n*sizeof(double*));
      for(i = 0; i < n; i++)
         {
             mass2[i] = (double*)malloc(n*sizeof(double));
         }    
 
-    for (i = 0; i < n; i++){
-	for(j = 0; i < n; i++){
-	    printf("mass1[%d][%d]", i+1, j+1);
-	    scanf("%lf", &mass1[i][j]);
-	}
-}
-	for (k = 0; k < n; k++){
-	    for(t = 0; t < n; t++){
+    //заполнение матриц
+    for (i = 0; i < n; i++)
+    {
+	    for(j = 0; i < n; i++)
+	    {
+    	    printf("mass1[%d][%d]", i+1, j+1);
+    	    scanf("%lf", &mass1[i][j]);
+	    }
+    }
+	for (k = 0; k < n; k++)
+	{
+	    for(t = 0; t < n; t++)
+	    {
 		printf("mass2[%d][%d]", k+1, t+1);
 		scanf("%lf", &mass2[k][t]);
 	    }
-}
-
-        //Р·Р°РїРѕР»РЅРµРЅРёРµ РјР°С‚СЂРёС†
+   	}
         printf("Enter mass1 values: ");
-        print_matrix(int n, double **mass1);
+        print_matrix(n, mass1);
         printf("Enter mass2 values: ");
-        print_matrix(int n, double **mass2);
+        print_matrix(n, mass2);
 
 		printf("Enter '+', '-' or '*'");
-		scanf("%s", &sign);
-		if (sign == '+')
+		scanf("%c", &sign);
+		if (sign == "+\n")
 		{  
-		    mass_sum(n, mass1, mass2); 
-            printf (print_matrix(n, result1);
+		    mass_sum(mass1, mass2, n); 
+            print_matrix(n, result1);
 		}
-		 if (sign == '-')
+		 if (sign == "-\n")
 		{
-		    mass_min(n, mass1, mass2); 
+		    mass_min(mass1, mass2, n); 
             print_matrix(n, result2);
 		}
-		 if (sign == '*')
+		 if (sign == "*\n")
 		{
-		    mass_pr(n, mass1, mass2); 
+		    mass_pr(mass1, mass2, n); 
             print_matrix(n, result3);
-		}
-    return 0;
-for (int i = 0; i < n; i++)
-{
-     free (sum[i]);
-     free (min[i]);
-     free (pr[i]);
-     free (mass1[i]);
-     free (mass2[i]);
+	    }
+    for (int i = 0; i < n; i++)
+    {
+        free (sum[i]);
+        free (min[i]);
+        free (pr[i]);
+        free (mass1[i]);
+        free (mass2[i]);
+    }
+        free (sum);
+        free (min); 
+        free (pr); 
+        free (mass1); 
+        free (mass2);
+return 0;
 }
-    free (sum);
-    free (min); 
-    free (pr); 
-    free (mass1); 
-    free (mass2);
-}
+
 
