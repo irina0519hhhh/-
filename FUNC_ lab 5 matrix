@@ -72,4 +72,14 @@ void print_matrix(int n, double** matrix)
 }
 
 
+//высвоб памяти
+void free_matrix(double** matrix)
+{
+    int i, n;
+    for (i = 0; i < n; i++)
+    {
 
+        free (matrix[i]);
+    }
+    free (matrix);
+}
