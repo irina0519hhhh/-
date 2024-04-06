@@ -14,6 +14,8 @@
 #include <string.h>
 #include "FUNC"
 
+
+
 int main()
 {
     int n;
@@ -59,37 +61,29 @@ int main()
         printf("Enter mass2 values: ");
         print_matrix(n, mass2);
 
-		printf("Enter '+', '-' or '*'");
-		scanf("%c", &sign);
-		if (sign == "+\n")
+		printf("Enter '+', '- 'or '*' \n");
+		scanf(" %c", &sign);
+
+		
+		if (sign == '+')
 		{  
-		    mass_sum(mass1, mass2, n); 
+		    result1 =  mass_sum(mass1, mass2, n); 
             print_matrix(n, result1);
 		}
-		 if (sign == "-\n")
+		 if (sign == '-')
 		{
-		    mass_min(mass1, mass2, n); 
-            print_matrix(n, result2);
+		    result1 =  mass_min(mass1, mass2, n); 
+            print_matrix(n, result1);
 		}
-		 if (sign == "*\n")
+		 if (sign == '*')
 		{
-		    mass_pr(mass1, mass2, n); 
-            print_matrix(n, result3);
+		    result1 =  mass_pr(mass1, mass2, n); 
+            print_matrix(n, result1);
 	    }
-    for (int i = 0; i < n; i++)
-    {
-        free (sum[i]);
-        free (min[i]);
-        free (pr[i]);
-        free (mass1[i]);
-        free (mass2[i]);
-    }
-        free (sum);
-        free (min); 
-        free (pr); 
-        free (mass1); 
-        free (mass2);
+	    
+	    free_matrix(result1);
+	    free_matrix(mass1);
+	    free_matrix(mass2);
 return 0;
 }
-
 
