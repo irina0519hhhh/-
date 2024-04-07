@@ -10,10 +10,11 @@
 #include<stdio.h>
 #include<string.h>
 
+
 int main ()
 {
-    char line[256];
-    int s;
+    char line[256], p;
+    int i, num = 0;
     FILE *f1;
     f1 = fopen("lab6.txt", "wt");
     fprintf(f1, "Иванов Петр Сергеевич 1975\nСидоров Николай Андреевич 1981\nВоробьянинов Ипполит Матвеевич 1978\nИванов Петр Сергеевич 1975\nСидоров Николай Андреевич 1981\nВоробьянинов Ипполит Матвеевич 1978\nИванов Петр Сергеевич 1975\nСидоров Николай Андреевич 1981\nВоробьянинов Ипполит Матвеевич 1908");
@@ -28,9 +29,27 @@ int main ()
             len--;
             line[len] = '\0';
             printf("%s\n", &line[len - 4]);
+            
+            //convert line[len] into a digit
+            //......
+            
+            
+            //check condition
+            if (line[len - 4] >= )
+            {
+                printf("%s\n", &line[len - 4]);
+            }
         }
+            
     }
-    
     fclose(f1);
 return 0;
 }
+  
+  
+
+  
+// // //   f1 = fopen("lab6666.txt", "wt");
+// // //   fprintf(f1, "%s", line[substr]);
+  
+// // //   fclose(f1);
