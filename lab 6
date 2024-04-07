@@ -12,73 +12,25 @@
 
 int main ()
 {
-  char line[256];
-  int s;
-  size_t len;
-  FILE *f1;
-  f1 = fopen("lab6.txt", "wt");
-  fprintf(f1, "Иванов Петр Сергеевич 1975\nСидоров Николай Андреевич 1981\nВоробьянинов Ипполит Матвеевич 1978\nИванов Петр Сергеевич 1975\nСидоров Николай Андреевич 1981\nВоробьянинов Ипполит Матвеевич 1978\nИванов Петр Сергеевич 1975\nСидоров Николай Андреевич 1981\nВоробьянинов Ипполит Матвеевич 1908");
-  fclose(f1);
+    char line[256];
+    int s;
+    FILE *f1;
+    f1 = fopen("lab6.txt", "wt");
+    fprintf(f1, "Иванов Петр Сергеевич 1975\nСидоров Николай Андреевич 1981\nВоробьянинов Ипполит Матвеевич 1978\nИванов Петр Сергеевич 1975\nСидоров Николай Андреевич 1981\nВоробьянинов Ипполит Матвеевич 1978\nИванов Петр Сергеевич 1975\nСидоров Николай Андреевич 1981\nВоробьянинов Ипполит Матвеевич 1908");
+    fclose(f1);
   
-  f1 = fopen("lab6.txt", "rt");
-  len = strlen(line);
-  s = len - 5;
-    if(f1)
+    f1 = fopen("lab6.txt", "rt");
+    while (fgets(line, 256, f1)) 
     {
-        char search_string[46] = "1981";
-        char *found_string = strstr(line, search_string);
-        printf ("Substring located -> %s", found_string);
-        fclose(f1);
-    }
-return 0;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#include<stdio.h>
-#include<string.h>
-
-int main ()
-{
-  char str, line[256]; 
-  int len, year;
-  FILE *f1;
-  f1 = fopen("lab6.txt", "rt");
-  fprintf(f1, "Иванов Петр Сергеевич 1975\nСидоров Николай Андреевич 1981\nВоробьянинов Ипполит Матвеевич 1978\nИванов Петр Сергеевич 1975\nСидоров Николай Андреевич 1981\nВоробьянинов Ипполит Матвеевич 1978\nИванов Петр Сергеевич 1975\nСидоров Николай Андреевич 1981\nВоробьянинов Ипполит Матвеевич 1908");
-  fclose(f1);
-  f1 = fopen ("lab6.txt", "wt");
-  while (fgets(line, 256, f1))
-    {
-        if (sscanf(line, "%[^0-9]%d", line, &year) == 1)
+        int len = strlen(line);
+        if (len > 0 && line[len - 1] == '\n')
         {
-            if (year >= 1980)
-            {
-                fprintf(stdout, "%s %d\n", line, year);
-            }
+            len--;
+            line[len] = '\0';
+            printf("%s\n", &line[len - 4]);
         }
     }
+    
     fclose(f1);
-      
-    //   f1 = fopen("lab6666.txt", "wt");
-    //   fprintf(f1, "%s", s);
-      
-    //   fclose(f1);
-  return 0;
+return 0;
 }
