@@ -4,3 +4,43 @@
 Вывести результат.*/
 
 
+
+#include <stdio.h>
+
+struct humen
+{
+    char name[10], surname[15]; //structure elements 
+    int birth_year;
+};
+    
+
+int main (void)
+{
+    int i, j, k, q;
+    struct humen sorted_people[4] = {};
+    struct humen people[4] = {people[4].name, people[4].surname, people[4].birth_year};
+    for(i = 0; i < 4; i++)
+    {
+        printf("Enter the name, surname and birth_year: ");
+        scanf("%s %s %d \n", &people[i].name, &people[i].surname, &people[i].birth_year);
+        //  printf("Birth_year: %d \n", people[i].birth_year);
+        
+        // //buble sorting
+        
+        // for (j = 0; j < 4 - 1; j++)
+        // {
+        //     for (k = 0; k < 4 - j - 1; k++)
+        //     {
+        //         if (people[k].birth_year > people[k+1].birth_year)
+        //         {
+        //             q = people[k].birth_year;
+        //             people[k].birth_year = people[k+1].birth_year;
+        //             people[k+1].birth_year = q;
+        //         }
+        //     }
+        // }
+        // printf("%s %s %d ", people[j].name, people[j].surname, people[j].birth_year);
+    }
+return 0;
+}
+
