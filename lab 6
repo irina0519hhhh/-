@@ -7,6 +7,7 @@
 Прочитать данные из этого файла и записать в другой только те строки, которые относятся к родившимся позднее 1980 года.*/
 
 
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -32,8 +33,7 @@ int main ()
             if (result >= 1981)
             {
                 snprintf (x, 30, "%d", result);
-                fprintf(f2, "%s\n", x);// записываем строку в файл f2
-                printf("%s\n", x);
+                fprintf(f2, "%s", line);// записываем строку в файл f2
             }
         }
     }
