@@ -4,7 +4,6 @@
 Вывести результат.*/
 
 
-
 #include <stdio.h>
 
 struct humen
