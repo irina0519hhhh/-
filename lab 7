@@ -3,42 +3,32 @@
 Ввести с консоли или из фай-ла элементы одного массива и построить на их основе другой, упорядочив элементы по годам рождения. 
 Вывести результат.*/
 
-#include <stdio.h>
-
-struct humen
-{
-    char name[10], surname[15]; //structure elements 
-    int birth_year;
-};
-    
-
 int main (void)
 {
-    int i, j, q;
-    // struct humen sorted_people[4] = {};
+    int i, j;
     struct humen people[4] = {people[4].name, people[4].surname, people[4].birth_year};
     for(i = 0; i < 4; i++)
     {
         printf("Enter the name, surname and birth_year: ");
         scanf("%s %s %d", &people[i].name, &people[i].surname, &people[i].birth_year);
     }
-        printf("Name: %s\t Surname: %s\t Birth_year: %d\n", people[i].name, people[i].surname, people[i].birth_year);
-    
-        //buble sorting
-        
-        for (i = 0; i < 4 - 1; i++)
+    for (i = 0; i < 4; i++)
+    {
+        for (j = 0; j < 4 - i - 1; j++)
         {
-            for (j = 0; j < 4 - i - 1; j++)
+            if(people[j].birth_year > people[j+1].birth_year)
             {
-                if (people.birth_year[i] > people.birth_year[i])
-                {
-                    q = people.birth_year[j];
-                    people.birth_year[i] = people.birth_year[j];
-                    people.birth_year[j] = q;
-                }
+                people[j] = people[j+1];
+                printf("%s %s %d ", people[i].name, people[i].surname, people[i].birth_year);
             }
+            
         }
-        printf("%s %s %d ", people[i].name, people[i].surname, q);
+    }
+
+        // printf("Name: %s\t Surname: %s\t Birth_year: %d\n", people[i].name, people[i].surname, people[i].birth_year);
+    
+        // sorting
+        
+        
 return 0;
 }
-
