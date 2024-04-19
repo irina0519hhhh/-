@@ -3,53 +3,63 @@
 Ввести с консоли или из фай-ла элементы одного массива и построить на их основе другой, упорядочив элементы по годам рождения. 
 Вывести результат.*/
 
+
 #include <stdio.h>
 #include <stdlib.h>
 
 struct humen
 {
-    char name[10], surname[15]; //structure atributes 
-    int birth_year;
+  char name[10], surname[15];	//structure atributes 
+  int birth_year;
 };
- 
- 
-void sortHumen(struct humen arr[]) 
+
+
+void sortHumen (struct humen arr[])
 {
-    int n = 4, i, j;
-    // Сортировка массива структур по году рождения
-    for (i = 0; i < n; i++) 
-    {
-        for (j = i + 1; j < n; j++) 
-        {
-            if (arr[i].birth_year > arr[j].birth_year) 
-            {
-                struct humen temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
-            }
-        }
-    }
+  int n = 4, i, j;
+  //massive sorting
+  for (i = 0; i < n - 1; i++)
+	{
+	  for (j = i + 1; j < n; j++)
+		{
+		  if (arr[i].birth_year > arr[j].birth_year)
+			{
+			  struct humen temp = arr[i];
+			  arr[i] = arr[j];
+			  arr[j] = temp;
+			}
+		}
+	}
 }
 
-
-int main ()
+int
+main ()
 {
-    int n = 4, i;
-    struct humen people[n];
-    for(i = 0; i < n; i++)
-    {
-        printf("Enter the name, surname and birth_year: ");
-        scanf("%s %s %d", &people[i].name, &people[i].surname, &people[i].birth_year);
-        // printf("Name: %s\t Surname: %s\t Birth_year: %d\n", people[i].name, people[i].surname, people[i].birth_year);
-    }
+  int n = 4, i;
+  struct humen people[n];
+  struct humen new_people[n];
+  for (i = 0; i < n; i++)
+	{
+	  printf ("Enter the name, surname and birth_year: ");
+	  scanf ("%s %s %d", &people[i].name, &people[i].surname, &people[i].birth_year);
+	}
 
-   sortHumen(people);
-
-    printf("\nSorted list of people:\n");
-    for (i = 0; i < n; i++)
-    {
-        printf("Name: %s\t Surname: %s\t Birth_year: %d\n", people[i].name, people[i].surname, people[i].birth_year);
-    }
-   
- return 0;
-}  
+  for (i = 0; i < n; i++)
+  {
+	new_people[i] = people[i];
+  }
+  
+  sortHumen (new_people);
+  
+  printf ("\nSorted list of people:\n");
+  
+  for (i = 0; i < n; i++)
+	{
+	  printf ("Name: %s\t Surname: %s\t Birth_year: %d\n", new_people[i].name, new_people[i].surname, new_people[i].birth_year);
+	} 
+  for (i = 0; i < n; i++)
+	{  
+	  printf ("Name: %s\t Surname: %s\t Birth_year: %d\n", people[i].name, people[i].surname, people[i].birth_year);
+	}
+  return 0;
+}
