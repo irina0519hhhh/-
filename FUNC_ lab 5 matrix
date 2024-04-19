@@ -5,7 +5,7 @@
 
 
 /* Matrix addition function*/
-double** mass_sum(double **mass1, double **mass2, int n) 
+double **mass_sum(double **mass1, double **mass2, int n) 
 {
     double **result1;
     int i, j;
