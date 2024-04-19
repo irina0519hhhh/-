@@ -4,27 +4,28 @@
 Вывести результат.*/
 
 #include <stdio.h>
+#include <stdlib.h>
 
 struct humen
 {
     char name[10], surname[15]; //structure atributes 
     int birth_year;
 };
-    
-
-void sort(struct humen **q, int n)
+ 
+ 
+void sortHumen(struct humen arr[]) 
 {
-    int i, j;
-    for (i = 0; i < n; i++)
+    int n = 4, i, j;
+    // Сортировка массива структур по году рождения
+    for (i = 0; i < n; i++) 
     {
-        for (j = 0; j < n - i - 1; j++)
+        for (j = i + 1; j < n; j++) 
         {
-            // сравниваем элементы массива структур по дате рождения человека
-            if (q[j]->birth_year > q[j+1]->birth_year)
+            if (arr[i].birth_year > arr[j].birth_year) 
             {
-                struct humen *temp = q[j];
-                q[j] = q[j+1];
-                q[j+1] = temp;
+                struct humen temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
             }
         }
     }
@@ -34,23 +35,21 @@ void sort(struct humen **q, int n)
 int main ()
 {
     int n = 4, i;
-    struct humen *p = struct newhumen[n];
-    for (i = 0; i < n; i++)
+    struct humen people[n];
+    for(i = 0; i < n; i++)
     {
         printf("Enter the name, surname and birth_year: ");
-        scanf("%s %s %d", &p[i] -> name, &p[i] -> surname, &p[i] -> birth_year);
-        // printf("Name: %s\t Surname: %s\t Birth_year: %d\n", p[i].name, p[i].surname, p[i].birth_year);
+        scanf("%s %s %d", &people[i].name, &people[i].surname, &people[i].birth_year);
+        // printf("Name: %s\t Surname: %s\t Birth_year: %d\n", people[i].name, people[i].surname, people[i].birth_year);
     }
-    struct humen **q = struct newhumen*[n];
+
+   sortHumen(people);
+
+    printf("\nSorted list of people:\n");
     for (i = 0; i < n; i++)
     {
-        q[i] = &p[i];
-        
+        printf("Name: %s\t Surname: %s\t Birth_year: %d\n", people[i].name, people[i].surname, people[i].birth_year);
     }
-    for (i = 0; i < n; i++)
-    {
-        q[i] = &p[i];
-        printf("Name: %s\t Surname: %s\t Birth_year: %d\n", q[i] -> name, q[i] -> surname, q[i] -> birth_year);
-    }
-return 0;
-}
+   
+ return 0;
+}  
