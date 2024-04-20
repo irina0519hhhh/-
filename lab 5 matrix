@@ -42,7 +42,7 @@ int main()
     //заполнение матриц
     for (i = 0; i < n; i++)
     {
-	    for(j = 0; i < n; i++)
+	    for(j = 0; j < n; j++)
 	    {
     	    printf("mass1[%d][%d]", i+1, j+1);
     	    scanf("%lf", &mass1[i][j]);
@@ -56,9 +56,9 @@ int main()
 		scanf("%lf", &mass2[k][t]);
 	    }
    	}
-        printf("Enter mass1 values: ");
+        printf("Enter mass1 values: \n");
         print_matrix(n, mass1);
-        printf("Enter mass2 values: ");
+        printf("Enter mass2 values: \n");
         print_matrix(n, mass2);
 
 		printf("Enter '+', '- 'or '*' \n");
@@ -86,4 +86,3 @@ int main()
 	    free_matrix(mass2);
 return 0;
 }
-
