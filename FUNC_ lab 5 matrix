@@ -42,7 +42,7 @@ double **mass_min(double **mass1, double **mass2, int n)
     return result2;
 }
 
-/* Matrix multiplication  func */
+/* Matrix multiplication func */
 double **mass_pr(double **mass1, double **mass2, int n) 
 {
     double **result3;
@@ -56,7 +56,7 @@ double **mass_pr(double **mass1, double **mass2, int n)
     {
         for ( j = 0; j < n; j++) 
         {
-            for (int k = 0; j < n; j++) 
+            for (int k = 0; k < n; k++) 
             {
                 result3[i][j] += mass1[i][k] * mass2[k][j];
             }
@@ -74,14 +74,14 @@ void print_matrix(int n, double** matrix)
 	{
 		for ( j = 0; j < n; j++)
 		{
-			printf(" %lf", matrix[i][j]);
+			printf("[%lf]", matrix[i][j]);
     	}
-	    printf("\n");
+	printf("\n");
     }
 }
 
 
-//высвоб памяти
+//free matrix
 void free_matrix(double** matrix)
 {
     int i, n;
