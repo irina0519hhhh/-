@@ -3,7 +3,6 @@
 Ввести с консоли или из фай-ла элементы одного массива и построить на их основе другой, упорядочив элементы по годам рождения. 
 Вывести результат.*/
 
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -19,35 +18,29 @@ void sortHumen (struct humen arr[])
   int n = 4, i, j;
   //massive sorting
   for (i = 0; i < n - 1; i++)
+  {
+	for (j = i + 1; j < n; j++)
 	{
-	  for (j = i + 1; j < n; j++)
+		if (arr[i].birth_year > arr[j].birth_year)
 		{
-		  if (arr[i].birth_year > arr[j].birth_year)
-			{
-			  struct humen temp = arr[i];
-			  arr[i] = arr[j];
-			  arr[j] = temp;
-			}
+			struct humen temp = arr[i];
+			arr[i] = arr[j];
+			arr[j] = temp;
 		}
 	}
+  }
 }
 
-int
-main ()
+int main ()
 {
-  FILE *f1 = fopen("fio.txt", "wt");
-  fprintf(f1, "David Jones 2002\n, Joanne Clark 2000\n, David Roberts 2008\n, William Smith 2004\n");
-  fclose(f1);
-  f1 = fopen("fio.txt", "rt");
-  char line[256];
   int n = 4, i;
   struct humen people[n];
   struct humen new_people[n];
-  
-  
-  //создать структуру из строки файла 
-  //......
-  
+  for (i = 0; i < n; i++)
+	{
+	  printf ("Enter the name, surname and birth_year: ");
+	  scanf ("%s %s %d", &people[i].name, &people[i].surname, &people[i].birth_year);
+	}
 
   for (i = 0; i < n; i++)
   {
@@ -62,9 +55,5 @@ main ()
 	{
 	  printf ("Name: %s\t Surname: %s\t Birth_year: %d\n", new_people[i].name, new_people[i].surname, new_people[i].birth_year);
 	} 
-  for (i = 0; i < n; i++)
-	{  
-	  printf ("Name: %s\t Surname: %s\t Birth_year: %d\n", people[i].name, people[i].surname, people[i].birth_year);
-	}
   return 0;
 }
