@@ -9,66 +9,76 @@
 #include <string.h>
 
 // Определение структуры humen
-typedef struct {
+struct humen
+{
     char name[50];
     char surname[50];
     int birth_year;
     char gender; // Пол
     float height; // Рост в метрах
-} humen;
+};
 
 // Функция для сравнения людей для сортировки
-int compare_humans(const void *a, const void *b) {
-    const humen *humen_a = (const humen *)a;
-    const humen *humen_b = (const humen *)b;
-
-    // Сначала сортировка по году рождения
-    if (humen_a->birth_year != humen_b->birth_year) {
-        return humen_a->birth_year - humen_b->birth_year;
+int compare_humen(const void *a, const void *b) 
+{
+    const struct humen *people = (const struct humen *)a;
+    const struct humen *new_people = (const struct humen *)b;
+    
+   //  сортировка по году рождения
+    if (people->birth_year != new_people->birth_year) 
+    {
+        return people->birth_year - new_people->birth_year;
     }
 
-    // Затем по имени/фамилии
-    int name_cmp = strcmp(humen_a->name, humen_b->name);
-    if (name_cmp != 0) {
+    //  по имени/фамилии
+    int name_cmp = strcmp(people->name, new_people->name);
+    if (name_cmp != 0) 
+    {
         return name_cmp;
     }
 
-    // Потом по полу
-    if (humen_a->gender != humen_b->gender) {
-        return humen_a->gender - humen_b->gender;
+    //  по полу
+    if (people->gender != new_people->gender) 
+    {
+        return people->gender - new_people->gender;
     }
 
-    // И наконец по росту
-    if (humen_a->height != humen_b->height) {
-        return (humen_a->height > humen_b->height) - (humen_a->height < humen_b->height);
+    //  по росту
+    if (people->height != new_people->height) 
+    {
+        return (people->height > new_people->height) - (people->height < new_people->height);
     }
 
-    // Если все поля равны, вернуть 0
+    // Если все поля равны, 0
     return 0;
 }
 
-int main() {
+int main() 
+{
     // Создание массива типа humen
-    humen array[4];
+    struct humen people[4];
+     struct humen new_people[4];
 
     // Открытие файла для чтения
-    FILE *file = fopen("humen_data.txt", "r");
-    if (file == NULL) {
-        perror("Ошибка при открытии файла");
-        return 1;
-    }
+    FILE *f2 = fopen("humen_data.txt", "r");
 
     // Чтение элементов из файла в массив
-    for (int i = 0; i < 4; i++) {
-        fscanf(file, "%s %s %d %c %f", array[i].name, array[i].surname, &array[i].birth_year, &array[i].gender, &array[i].height);
+    int i;
+    for (i = 0; i < 4; i++) {
+        fscanf(f2, "%s %s %d %c %f", people[i].name, people[i].surname, &people[i].birth_year, &people[i].gender, &people[i].height);
     }
 
     // Закрытие файла
-    fclose(file);
+    fclose(f2);
 
     // Ввод с консоли информации о том, по каким полям упорядочить элементы
     printf("Введите поля для сортировки (год рождения - 1, имя/фамилия - 2, пол - 3, рост - 4): ");
     int sort_field;
     scanf("%d", &sort_field);
-
+    
     // Сортировка массив
+    compare_humen(people, new_people);
+    
+    printf("sorted humen data is: %s %s %d %c %f", people[i].name, people[i].surname, &people[i].birth_year, &people[i].gender, &people[i].height);;
+return 0;
+}
