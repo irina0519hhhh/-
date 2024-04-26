@@ -1,1 +1,74 @@
+/*Создать текстовый файл с записями, включающие имя/фамилию человека, год рожде-ния, пол и рост (в метрах). 
+Упорядочить элементы по году рождения, имени/фамилии, полу или росту. Вывести результат. 
+Указать элемент, по которому следует упорядо-чить, через консоль. 
+А также реализовать возможность задавать несколько полей для упорядочивания.*/
 
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Определение структуры humen
+typedef struct {
+    char name[50];
+    char surname[50];
+    int birth_year;
+    char gender; // Пол
+    float height; // Рост в метрах
+} humen;
+
+// Функция для сравнения людей для сортировки
+int compare_humans(const void *a, const void *b) {
+    const humen *humen_a = (const humen *)a;
+    const humen *humen_b = (const humen *)b;
+
+    // Сначала сортировка по году рождения
+    if (humen_a->birth_year != humen_b->birth_year) {
+        return humen_a->birth_year - humen_b->birth_year;
+    }
+
+    // Затем по имени/фамилии
+    int name_cmp = strcmp(humen_a->name, humen_b->name);
+    if (name_cmp != 0) {
+        return name_cmp;
+    }
+
+    // Потом по полу
+    if (humen_a->gender != humen_b->gender) {
+        return humen_a->gender - humen_b->gender;
+    }
+
+    // И наконец по росту
+    if (humen_a->height != humen_b->height) {
+        return (humen_a->height > humen_b->height) - (humen_a->height < humen_b->height);
+    }
+
+    // Если все поля равны, вернуть 0
+    return 0;
+}
+
+int main() {
+    // Создание массива типа humen
+    humen array[4];
+
+    // Открытие файла для чтения
+    FILE *file = fopen("humen_data.txt", "r");
+    if (file == NULL) {
+        perror("Ошибка при открытии файла");
+        return 1;
+    }
+
+    // Чтение элементов из файла в массив
+    for (int i = 0; i < 4; i++) {
+        fscanf(file, "%s %s %d %c %f", array[i].name, array[i].surname, &array[i].birth_year, &array[i].gender, &array[i].height);
+    }
+
+    // Закрытие файла
+    fclose(file);
+
+    // Ввод с консоли информации о том, по каким полям упорядочить элементы
+    printf("Введите поля для сортировки (год рождения - 1, имя/фамилия - 2, пол - 3, рост - 4): ");
+    int sort_field;
+    scanf("%d", &sort_field);
+
+    // Сортировка массив
