@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Определение структуры humen
+struct humen 
+{
+  char name, surname;
+  int birth_year;
+};
+
+
+//massive sorting
+void sortHumen (struct humen arr[])
+{
+  int n = 4, i, j;
+
+  for (i = 0; i < n - 1; i++)
+	{
+	  for (j = i + 1; j < n; j++)
+		{
+		  if (arr[i].birth_year > arr[j].birth_year)
+			{
+			  struct humen temp = arr[i];
+			  arr[i] = arr[j];
+			  arr[j] = temp;
+			}
+		}
+	}
+}
+
+
+
+int main() 
+{
+   int n = 4, i;
+   char line[256];
+   
+    // Создание массивов типа humen
+    struct humen people[n];
+    struct humen new_people[n];
+
+    // Открытие файла для чтения
+    FILE *f1 = fopen("humen.txt", "r");
+
+    // Чтение элементов из файла в первый массив
+    while (fgets(line, 256, f1))
+    {
+        for (i = 0; i < 4; i++) 
+        {
+            fscanf(f1, "%s %s %d", &people[i].name, &people[i].surname, &people[i].birth_year);
+        }
+    }
+    // Копирование массива people в new_people
+    for (i = 0; i < n; i++)
+    {
+        new_people[i] = people[i];
+    }
+
+    // Сортировка массива new_people по годам рождения
+    sortHumen (new_people);
+    
+   
+    // Вывод отсортированного массива
+    printf ("\nSorted list of people:\n");
+   
+    for (i = 0; i < n; i++)
+	{
+	  printf ("Name: %s\t Surname: %s\t Birth_year: %d\n", new_people[i].name, new_people[i].surname, new_people[i].birth_year);
+	}
+	// Закрытие файла
+    fclose(f1);
+return 0;
+}
