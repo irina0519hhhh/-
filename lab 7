@@ -18,17 +18,17 @@ void sortHumen (struct humen arr[])
   int n = 4, i, j;
   //massive sorting
   for (i = 0; i < n - 1; i++)
-  {
-	for (j = i + 1; j < n; j++)
 	{
-		if (arr[i].birth_year > arr[j].birth_year)
+	  for (j = i + 1; j < n; j++)
 		{
-			struct humen temp = arr[i];
-			arr[i] = arr[j];
-			arr[j] = temp;
+		  if (arr[i].birth_year > arr[j].birth_year)
+			{
+			  struct humen temp = arr[i];
+			  arr[i] = arr[j];
+			  arr[j] = temp;
+			}
 		}
 	}
-  }
 }
 
 int main ()
@@ -53,7 +53,7 @@ int main ()
   
   for (i = 0; i < n; i++)
 	{
-	  printf ("Name: %s\t Surname: %s\t Birth_year: %d\n", new_people[i].name, new_people[i].surname, new_people[i].birth_year);
+	  printf ("%s %s %d\n", new_people[i].name, new_people[i].surname, new_people[i].birth_year);
 	} 
   return 0;
 }
