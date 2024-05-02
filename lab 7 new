@@ -2,19 +2,18 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Определение структуры humen
-struct humen 
+struct humen
 {
-  char name, surname;
-  int birth_year;
+    char name[20];
+    char surname[20];
+    int birth_year;
 };
 
 
-//massive sorting
 void sortHumen (struct humen arr[])
 {
   int n = 4, i, j;
-
+  //massive sorting
   for (i = 0; i < n - 1; i++)
 	{
 	  for (j = i + 1; j < n; j++)
@@ -29,46 +28,36 @@ void sortHumen (struct humen arr[])
 	}
 }
 
+int main() {
+    struct humen arr1[4], arr2[4];
+    FILE *fp;
 
-
-int main() 
-{
-   int n = 4, i;
-   char line[256];
-   
-    // Создание массивов типа humen
-    struct humen people[n];
-    struct humen new_people[n];
-
-    // Открытие файла для чтения
-    FILE *f1 = fopen("humen.txt", "r");
-
-    // Чтение элементов из файла в первый массив
-    while (fgets(line, 256, f1))
+    fp = fopen("input.txt", "rt");
+    int i;
+    for (i = 0; i < 4; i++) 
     {
-        for (i = 0; i < 4; i++) 
-        {
-            fscanf(f1, "%s %s %d", &people[i].name, &people[i].surname, &people[i].birth_year);
-        }
+        fscanf(fp, "%s %s %d", arr1[i].name, arr1[i].surname, &arr1[i].birth_year);
     }
-    // Копирование массива people в new_people
-    for (i = 0; i < n; i++)
+    fclose(fp);
+
+    for (i = 0; i < 4; i++)
     {
-        new_people[i] = people[i];
+	    arr2[i] = arr1[i];
+    }
+  
+    sortHumen (arr2);
+
+    printf("Unsorted array:\n");
+    for (int i = 0; i < 4; i++) 
+    {
+        printf("%s %s %d\n", arr1[i].name, arr1[i].surname, arr1[i].birth_year);
     }
 
-    // Сортировка массива new_people по годам рождения
-    sortHumen (new_people);
-    
-   
-    // Вывод отсортированного массива
-    printf ("\nSorted list of people:\n");
-   
-    for (i = 0; i < n; i++)
-	{
-	  printf ("Name: %s\t Surname: %s\t Birth_year: %d\n", new_people[i].name, new_people[i].surname, new_people[i].birth_year);
-	}
-	// Закрытие файла
-    fclose(f1);
-return 0;
+    printf("\nSorted array:\n");
+    for (int i = 0; i < 4; i++) 
+    {
+        printf("%s %s %d\n", arr2[i].name, arr2[i].surname, arr2[i].birth_year);
+    }
+
+    return 0;
 }
