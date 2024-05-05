@@ -8,77 +8,98 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Определение структуры humen
-struct humen
+struct Person 
 {
     char name[50];
     char surname[50];
-    int birth_year;
-    char gender; // Пол
-    float height; // Рост в метрах
+    int yearOfBirth;
+    char gender;
+    float height;
 };
 
-// Функция для сравнения людей для сортировки
-int compare_humen(const void *a, const void *b) 
+int compareByYearOfBirth(const void *a, const void *b) 
 {
-    const struct humen *people = (const struct humen *)a;
-    const struct humen *new_people = (const struct humen *)b;
-    
-   //  сортировка по году рождения
-    if (people->birth_year != new_people->birth_year) 
-    {
-        return people->birth_year - new_people->birth_year;
-    }
+    return ((struct Person*)a)->yearOfBirth - ((struct Person*)b)->yearOfBirth;
+}
 
-    //  по имени/фамилии
-    int name_cmp = strcmp(people->name, new_people->name);
-    if (name_cmp != 0) 
+int compareByNameSurname(const void *a, const void *b) 
+{
+    int res = strcmp(((struct Person*)a)->name, ((struct Person*)b)->name);
+    if (res == 0) 
     {
-        return name_cmp;
+        return strcmp(((struct Person*)a)->surname, ((struct Person*)b)->surname);
     }
+    return res;
+}
 
-    //  по полу
-    if (people->gender != new_people->gender) 
-    {
-        return people->gender - new_people->gender;
-    }
+int compareByGender(const void *a, const void *b) 
+{
+    return ((struct Person*)a)->gender - ((struct Person*)b)->gender;
+}
 
-    //  по росту
-    if (people->height != new_people->height) 
-    {
-        return (people->height > new_people->height) - (people->height < new_people->height);
-    }
-
-    // Если все поля равны, 0
-    return 0;
+int compareByHeight(const void *a, const void *b) 
+{
+    return ((struct Person*)a)->height - ((struct Person*)b)->height;
 }
 
 int main() 
 {
-    // Создание массива типа humen
-    struct humen people[4];
-     struct humen new_people[4];
+    FILE *file;
+    int n = 4;
+    struct Person *persons;
+    persons = (struct Person*)malloc(n * sizeof(struct Person));
+   
+    file = fopen("humen_data.txt", "wt");
+    
+    
+    for (int i = 0; i < n; i++) {
+        printf("Enter name: ");
+        gets(persons[i].name);
+        printf("Enter surname: ");
+        gets(persons[i].surname);
+        printf("Enter year of birth: ");
+        scanf("%d", &persons[i].yearOfBirth);
+        getchar();
+        printf("Enter gender (M/F): ");
+        scanf("%c", &persons[i].gender);
+        getchar();
+        printf("Enter height: ");
+        scanf("%f", &persons[i].height);
+        getchar();
 
-    // Открытие файла для чтения
-    FILE *f2 = fopen("humen_data.txt", "r");
-
-    // Чтение элементов из файла в массив
-    int i;
-    for (i = 0; i < 4; i++) {
-        fscanf(f2, "%s %s %d %c %f", people[i].name, people[i].surname, &people[i].birth_year, &people[i].gender, &people[i].height);
+        fprintf(file, "%s %s %d %c %.2f\n", persons[i].name, persons[i].surname, persons[i].yearOfBirth, persons[i].gender, persons[i].height);
     }
 
-    // Закрытие файла
-    fclose(f2);
+    fclose(file);
+   
+    int sortChoice;
+    printf("Enter field to sort by (1 - Year of Birth, 2 - Name/Surname, 3 - Gender, 4 - Height): ");
+    scanf("%d", &sortChoice);
 
-    // Ввод с консоли информации о том, по каким полям упорядочить элементы
-    printf("Введите поля для сортировки (год рождения - 1, имя/фамилия - 2, пол - 3, рост - 4): ");
-    int sort_field;
-    scanf("%d", &sort_field);
+    if (sortChoice == 1) 
+    { 
+        qsort(persons, n, sizeof(struct Person), compareByYearOfBirth);
+    }        
+    if (sortChoice == 2) 
+    { 
+        qsort(persons, n, sizeof(struct Person), compareByNameSurname);
+    }
+    if (sortChoice == 3) 
+    {
+        qsort(persons, n, sizeof(struct Person), compareByGender);
+    }
+    if (sortChoice == 4) 
+    {
+        qsort(persons, n, sizeof(struct Person), compareByHeight);
+    }
     
-    // Сортировка массив
-    compare_humen(people, new_people);
-    
-    printf("sorted humen data is: %s %s %d %c %f", people[i].name, people[i].surname, &people[i].birth_year, &people[i].gender, &people[i].height);;
-return 0;
+    printf("Sorted result:\n");
+    for (int i = 0; i < n; i++) 
+    {
+        printf("%s %s %d %c %.2f\n", persons[i].name, persons[i].surname, persons[i].yearOfBirth, persons[i].gender, persons[i].height);
+    }
+
+    free(persons);
+
+    return 0;
 }
