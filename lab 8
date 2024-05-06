@@ -54,12 +54,11 @@ int main()
     fclose(file);
 
     // Reading data from the file and creating a structure
-    int n = 4;
+    int n = 3;
     struct Person *persons;
     persons = (struct Person*)malloc(n * sizeof(struct Person));
 
     file = fopen("people.txt", "rt");
-    
     
     for (int i = 0; i < 3; i++) 
     {
@@ -98,84 +97,3 @@ int main()
 
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#include <stdio.h>
-#include <stdlib.h>
-
-struct Person 
-{
-    char name[50];
-    char surname[50];
-    int birth_year;
-    char gender;
-    float height;
-};
-
-int main() 
-{
-    FILE *file;
-    file = fopen("people.txt", "w");
-
-    if (file == NULL) {
-        printf("Error opening file\n");
-        return 1;
-    }
-
-    fprintf(file, "John Smith 1990 M 1.80\n");
-    fprintf(file, "Alice Johnson 1985 F 1.65\n");
-    fprintf(file, "Michael Brown 1978 M 1.75\n");
-
-    fclose(file);
-
-    // Reading data from the file and creating a structure
-    struct Person people[3];
-    file = fopen("people.txt", "r");
-
-    if (file == NULL) 
-    {
-        printf("Error opening file\n");
-        return 1;
-    }
-
-    for (int i = 0; i < 3; i++) 
-    {
-        fscanf(file, "%s %s %d %c %f\n", people[i].name, people[i].surname, &people[i].birth_year, &people[i].gender, &people[i].height);
-    }
-
-    fclose(file);
-
-    // Printing the data from the structure
-    for (int i = 0; i < 3; i++) 
-    {
-        printf("Name: %s %s\n", people[i].name, people[i].surname);
-        printf("Birth year: %d\n", people[i].birth_year);
-        printf("Gender: %c\n", people[i].gender);
-        printf("Height: %.2f\n", people[i].height);
-        printf("\n");
-    }
-
-    return 0;
-}
-
