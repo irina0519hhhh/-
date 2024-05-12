@@ -1,3 +1,46 @@
 // Реализовать программу-калькулятор с возможностью выполнения арифметических действий (+, -), унарный и бинарный вариант. 
 У пользователя запрашивается выражение, например, "-123,5 + 4 - 456+56", программа должна решить выражение. 
 Для разбора входной строки использовать функцию strok
+
+
+#include <stdio.h>
+#include <string.h>
+
+float unaryOperation(float num, char op) {
+    if (op == '-') {
+        return -num;
+    }
+    return num;
+}
+
+float binaryOperation(float num1, float num2, char op) {
+    if (op == '+') {
+        return num1 + num2;
+    } else if (op == '-') {
+        return num1 - num2;
+    }
+    return 0;
+}
+
+int main() {
+    char input[100];
+    fgets(input, sizeof(input), stdin);
+
+    char *token = strtok(input, "+-");
+    float result = atof(token);
+
+    while ((token = strtok(NULL, "+-")) != NULL) {
+        char op = input[token - input - 1];
+        float num = atof(token);
+
+        if (token - input - 1 == 0) {
+            result = unaryOperation(result, op);
+        } else {
+            result = binaryOperation(result, num, op);
+        }
+    }
+
+    printf("Result: %.2f\n", result);
+
+    return 0;
+}
