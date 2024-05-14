@@ -1,2 +1,35 @@
 //Написать программу вычисления максимального числа из введенных пользователем в виде одной строки.
 Использовать для этого макрос (без функции), на вход которому подается массив чисел и их количество
+
+
+#include <stdio.h>
+
+#define MAX_NUM(arr, n) ({ \
+    int max_num = arr[0]; \
+    for (int i = 1; i < n; i++) { \
+        if (arr[i] > max_num) { \
+            max_num = arr[i]; \
+        } \
+    } \
+    max_num; })
+
+int main() 
+{
+    int n;
+    printf("Введите количество чисел: ");
+    scanf("%d", &n);
+
+    int numbers[n];
+
+    printf("Введите числа через пробел: ");
+    for (int i = 0; i < n; i++) 
+    {
+        scanf("%d", &numbers[i]);
+    }
+
+    int max_num = MAX_NUM(numbers, n);
+
+    printf("Максимальное число: %d", max_num);
+
+    return 0;
+}
