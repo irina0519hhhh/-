@@ -1,5 +1,46 @@
-//Написать программу-календарь. Пользователь может указать даты в формате:
-	- гггг.мм.дд – программа вычисляет день недели соответствующий данной дате;
-	- гггг.мм – программа выводит календарь за данный месяц;
-	- гггг – календарь за год;
-	- now – текущую дату.
+//
+
+#include <stdio.h>
+#include <stdarg.h>
+
+void calculate(int num, ...) 
+{
+    va_list args; //special data typ for unfixed parameters amount
+    va_start(args, num); //
+
+    int sum = 0;
+    int max = va_arg(args, int); //
+    int min = max;
+
+    for (int i = 1; i < num; i++) 
+    {
+        int arg = va_arg(args, int);
+
+        sum += arg;
+
+        if (arg > max) 
+        {
+            max = arg;
+        }
+
+        if (arg < min) 
+        {
+            min = arg;
+        }
+    }
+
+    double average = (double)sum / num;
+
+    printf("Sum: %d\n", sum);
+    printf("Max: %d\n", max);
+    printf("Min: %d\n", min);
+    printf("Average: %.2f\n", average);
+
+    va_end(args);
+}
+
+int main() 
+{
+    calculate(5, 10, 20, 30, 40, 50);
+    return 0;
+}
