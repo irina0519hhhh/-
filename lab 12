@@ -3,3 +3,114 @@
 	- гггг.мм – программа выводит календарь за данный месяц;
 	- гггг – календарь за год;
 	- now – текущую дату
+
+
+#include <stdio.h>
+#include <time.h>
+#include <string.h>
+
+int main() 
+{
+    char input[20];
+    int year, month, day;
+
+    printf("Введите дату в формате (гггг.мм.дд): ");
+    scanf("%s", input);
+
+if (strcmp(input, "now") == 0) 
+{
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+    year = tm.tm_year + 1900;
+    month = tm.tm_mon + 1;
+    day = tm.tm_mday + 1;
+} 
+else 
+{
+    sscanf(input, "%d.%d.%d", &year, &month, &day);
+}
+
+struct tm date = {0};
+date.tm_year = year - 1900;
+date.tm_mon = month - 1;
+date.tm_mday = day - 1;
+
+time_t time = mktime(&date);
+struct tm *result = localtime(&time);
+
+printf("День недели: ");
+switch(result->tm_wday) 
+{
+    case 0:
+        printf("Понедельник\n");
+        break;
+    case 1:
+        printf("Вторник\n");
+        break;
+    case 2:
+        printf("Среда\n");
+        break;
+    case 3:
+        printf("Четверг\n");
+        break;
+    case 4:
+        printf("Пятница\n");
+        break;
+    case 5:
+        printf("Суббота\n");
+        break;
+    case 6:
+        printf("Воскресенье\n");
+        break;
+}
+
+printf("\n");
+
+printf("Календарь:\n");
+printf("ПН ВТ СР ЧТ ПТ СБ ВС\n");
+
+struct tm first_day = {0};
+first_day.tm_year = year - 1900;
+first_day.tm_mon = month - 1;
+first_day.tm_mday = 1;
+time_t first_day_time = mktime(&first_day);
+struct tm *first_day_result = localtime(&first_day_time);
+
+int first_day_weekday = first_day_result->tm_wday;
+
+for (int i = 0; i < first_day_weekday; i++) 
+{
+    printf("   ");
+}
+
+for (int i = 1; i <= 31; i++) 
+{
+    struct tm current_day = {0};
+    current_day.tm_year = year - 1900;
+    current_day.tm_mon = month - 1;
+    current_day.tm_mday = i;
+    time_t current_day_time = mktime(&current_day);
+    struct tm *current_day_result = localtime(&current_day_time);
+    
+    if (current_day_result->tm_mon != month - 1) 
+    {
+        break;
+    }
+    
+    if (i < 10) 
+    {
+        printf(" %d ", i);
+    } else 
+    {
+        printf("%d ", i);
+    }
+    
+    if ((first_day_weekday + i) % 7 == 0) 
+    {
+        printf("\n");
+    }
+}
+
+printf("\n");
+return 0;
+}
