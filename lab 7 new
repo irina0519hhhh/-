@@ -10,9 +10,9 @@ struct humen
 };
 
 
-void sortHumen (struct humen arr[])
+void sortHumen (struct humen arr[], int n)
 {
-  int n = 4, i, j;
+  int i, j;
   //massive sorting
   for (i = 0; i < n - 1; i++)
 	{
@@ -28,36 +28,52 @@ void sortHumen (struct humen arr[])
 	}
 }
 
-int main() {
-    struct humen arr1[4], arr2[4];
+int main() 
+{
+    
+    char line [256];
     FILE *fp;
+    int n = 0;
+ //   fprintf(fp, "David Jones 2002\nJoanne Clark 2000\nDavid Roberts 2008\nWilliam Smith 2004");
+//    fclose(fp);
+    fp = fopen("input.txt", "rt");
+    while (fgets(line, 256, fp)) 
+    {
 
+            n++;
+  
+    } 
+    printf("n= %d \n",n);
+    fclose(fp);
+    
+    struct humen arr1[n], arr2[n];
     fp = fopen("input.txt", "rt");
     int i;
-    for (i = 0; i < 4; i++) 
+
+    for (i = 0; i < n; i++) 
     {
         fscanf(fp, "%s %s %d", arr1[i].name, arr1[i].surname, &arr1[i].birth_year);
     }
     fclose(fp);
 
-    for (i = 0; i < 4; i++)
+    for (i = 0; i < n; i++)
     {
 	    arr2[i] = arr1[i];
     }
   
-    sortHumen (arr2);
+    sortHumen (arr2, n);
 
     printf("Unsorted array:\n");
-    for (int i = 0; i < 4; i++) 
+    for (int i = 0; i < n; i++) 
     {
         printf("%s %s %d\n", arr1[i].name, arr1[i].surname, arr1[i].birth_year);
     }
 
     printf("\nSorted array:\n");
-    for (int i = 0; i < 4; i++) 
+    for (int i = 0; i < n; i++) 
     {
         printf("%s %s %d\n", arr2[i].name, arr2[i].surname, arr2[i].birth_year);
     }
-
     return 0;
 }
+   
