@@ -2,47 +2,43 @@
 У пользователя запрашивается выражение, например, "-123,5 + 4 - 456+56", программа должна решить выражение. 
 Для разбора входной строки использовать функцию strok
 
-
-
 #include <stdio.h>
-#include <stdlib.h>  
 #include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
 
-float unaryOperation(float num, char op) {
-    if (op == '-') {
-        return -num;
-    }
-    return num;
-}
+double parseExpression(char* expression) {
+    double result = 0.0;
+    int sign = 1;
+    char* token = strtok(expression, " +-");
 
-float binaryOperation(float num1, float num2, char op) {
-    if (op == '+') {
-        return num1 + num2;
-    } else if (op == '-') {
-        return num1 - num2;
+    while (token != NULL) {
+        if (strcmp(token, "-") == 0) {
+            sign = -1;  // Помним, что следующее число будет отрицательным
+        } else if (strcmp(token, "+") == 0) {
+            sign = 1;  // Помним, что следующее число будет положительным
+        } else {
+            // Если первый символ в токене - это минус, меняем знак и обрезаем строку
+            if (token[0] == '-' && isdigit(token[1])) {
+                result += sign * atof(token + 1);
+            } else {
+                result += sign * atof(token); // Учитываем знак операнда
+            }
+        }
+        token = strtok(NULL, " ");
     }
-    return 0;
+
+    return result;
 }
 
 int main() {
     char input[100];
-    fgets(input, sizeof(input), stdin);
+    printf("Введите арифметическое выражение: ");
+    fgets(input, 100, stdin);
 
-    char *token = strtok(input, "+-");
-    float result = atof(token);
+    double result = parseExpression(input);
 
-    while ((token = strtok(NULL, "+-")) != NULL) {
-        char op = input[token - input - 1];
-        float num = atof(token);
-
-        if (token - input - 1 == 0) {
-            result = unaryOperation(result, op);
-        } else {
-            result = binaryOperation(result, num, op);
-        }
-    }
-
-    printf("Result: %.2f\n", result);
+    printf("Результат: %f\n", result);
 
     return 0;
 }
