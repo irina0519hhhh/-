@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+#define MAX_NUM(arr, n) ({ \
+    int max_num = arr[0]; \
+    for (int i = 1; i < n; i++) { \
+        if (arr[i] > max_num) { \
+            max_num = arr[i]; \
+        } \
+    } \
+    max_num; })
+
+#define CALC_AVG(array, count) ({ \
+    int sum = 0; \
+    for (int i = 0; i < count; i++) { \
+        sum += array[i]; \
+    } \
+    (float)sum / count; \
+})
+
+int main() 
+{
+    int n;
+    int count;
+    printf("Введите количество чисел: ");
+    scanf("%d", &n);
+    int numbers[n];
+    printf("Введите числа через пробел: ");
+    for (int i = 0; i < n; i++) 
+    {
+        scanf("%d", &numbers[i]);
+    }
+    
+    int max_num = MAX_NUM(numbers, n);
+    printf("Максимальное число: %d\n", max_num);
+    
+    
+    count = 0;
+    while (numbers[count] == 1) 
+    {
+        count++;
+    }
+    float avg = CALC_AVG(numbers, count);
+    printf("Среднее арифметическое: %f\n", avg);
+
+    return 0;
+}
