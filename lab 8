@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct Person 
+struct person 
 {
     char name[50];
     char surname[50];
@@ -17,29 +17,41 @@ struct Person
     float height;
 };
 
-int compareByBirthYear(const void *a, const void *b) 
+
+int compare_year(const void *a, const void *b) 
 {
-    return ((struct Person*)a)->birth_year - ((struct Person*)b)->birth_year;
+    // Сравниваем элементы структуры a и b на основе года рождения
+    int res1 = ((struct person *)a)->birth_year - ((struct person *)b)->birth_year;
+    return res1;
 }
 
-int compareByNameSurname(const void *a, const void *b) 
+int compare_name(const void *a, const void *b) 
 {
-    int res = strcmp(((struct Person*)a)->name, ((struct Person*)b)->name);
-    if (res == 0) 
+    // Сравниваем имена элементов структуры a и b
+    int result = strcmp(((struct person *)a)->name, ((struct person *)b)->name);
+    if (result != 0)
     {
-        return strcmp(((struct Person*)a)->surname, ((struct Person*)b)->surname);
+        return result;
     }
-    return res;
+    else
+    {
+        return strcmp(((struct person *)a)->surname, ((struct person *)b)->surname);
+    }
+    return result;
 }
 
-int compareByGender(const void *a, const void *b) 
+
+int compare_gender(const void *a, const void *b)
 {
-    return ((struct Person*)a)->gender - ((struct Person*)b)->gender;
+    // Сравниваем элементы структуры a и b на основе пола
+    int res2 = ((struct person *)a)->gender - ((struct person *)b)->gender;
+    return res2;
 }
 
-int compareByHeight(const void *a, const void *b) 
+int compare_height(const void *a, const void *b) 
 {
-    return ((struct Person*)a)->height - ((struct Person*)b)->height;
+    // Сравниваем элементы структуры a и b на основе роста
+    return ((struct person *)a)->height - ((struct person *)b)->height;
 }
 
 int main() 
@@ -50,50 +62,48 @@ int main()
     fprintf(file, "John Smith 1990 m 1.80\n");
     fprintf(file, "Alice Johnson 1985 f 1.65\n");
     fprintf(file, "Michael Brown 1978 m 1.75\n");
-
+    fprintf(file, "John Gutierrez 1992 m 1.82\n");
+    fprintf(file, "Kelly Lopez 1995 f 1.60\n");
+    fprintf(file, "Nick Rivera 1999 m 1.88\n");
+    fprintf(file, "Dorothy Patterson 2000 f 1.73\n");
+    fprintf(file, "John Smith 1969 m 1.89\n");
+    fprintf(file, "Alice Johnson 1990 f 1.62\n");
+    fprintf(file, "Michael Brown 1977 m 1.95\n");
+    fprintf(file, "John Gutierrez 1990 m 1.80\n");
     fclose(file);
-
-    // Reading data from the file and creating a structure
-    int n = 3;
-    struct Person *persons;
-    persons = (struct Person*)malloc(n * sizeof(struct Person));
-
+    int n = 11;
+    struct person *persons;
+    persons = (struct person*)malloc(n * sizeof(struct person));
     file = fopen("people.txt", "rt");
-    
-    for (int i = 0; i < 3; i++) 
+    for (int i = 0; i < n; i++) 
     {
         fscanf(file, "%s %s %d %c %f\n", persons[i].name, persons[i].surname, &persons[i].birth_year, &persons[i].gender, &persons[i].height);
     }
-
     fclose(file);
-    
     int sortChoice;
     printf("Enter field to sort by (1 - Year of Birth, 2 - Name/Surname, 3 - Gender, 4 - Height): ");
     scanf("%d", &sortChoice);
-
     if (sortChoice == 1) 
     { 
-        qsort(persons, n, sizeof(struct Person), compareByBirthYear);
+        qsort(persons, n, sizeof(struct person), compare_year);
     }        
-    if (sortChoice == 2) 
+    else if (sortChoice == 2) 
     { 
-        qsort(persons, n, sizeof(struct Person), compareByNameSurname);
+        qsort(persons, n, sizeof(struct person), compare_name);
     }
-    if (sortChoice == 3) 
+    else if (sortChoice == 3) 
     {
-        qsort(persons, n, sizeof(struct Person), compareByGender);
+        qsort(persons, n, sizeof(struct person), compare_gender);
     }
-    if (sortChoice == 4) 
+    else if (sortChoice == 4) 
     {
-        qsort(persons, n, sizeof(struct Person), compareByHeight);
+        qsort(persons, n, sizeof(struct person), compare_height);
     }
-    
     printf("Sorted result:\n");
     for (int i = 0; i < n; i++)
     {
         printf("%s %s %d %c %.2f\n", persons[i].name, persons[i].surname, persons[i].birth_year, persons[i].gender, persons[i].height);
     }
     free(persons);
-
     return 0;
 }
