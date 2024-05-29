@@ -1,47 +1,37 @@
 /*Написать программу, обрабатывающую получение сигналов (SIGABRT, SIGFPE, SIGILL, SIGINT, SIGSEGV, SIGTERM). 
 Также программа, может возбуждать эти сигна-лы по указанию пользователя. В качестве обработчика должно быть реализовано логи-рование (вывод на консоль).*/
 
-
-/******************************************************************************
-
-Welcome to GDB Online.
-  GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
-  C#, OCaml, VB, Perl, Swift, Prolog, Javascript, Pascal, COBOL, HTML, CSS, JS
-  Code, Compile, Run and Debug online from anywhere in world.
-
-*******************************************************************************/
 #include <stdio.h>
-#include <stdio.h>
-#include <signal.h> // для работы с сигналами
+#include <stdlib.h>
+#include <signal.h>
 
-// Функция обработки сигнала
-void signal_handler(int signal) 
-{
-    switch (signal) {
+void signal_handler(int signal) {
+    switch(signal) {
         case SIGABRT:
-            printf("Получен сигнал SIGABRT\n");
+            printf("Received SIGABRT signal\n");
             break;
         case SIGFPE:
-            printf("Получен сигнал SIGFPE\n");
+            printf("Received SIGFPE signal\n");
             break;
         case SIGILL:
-            printf("Получен сигнал SIGILL\n");
+            printf("Received SIGILL signal\n");
             break;
         case SIGINT:
-            printf("Получен сигнал SIGINT\n");
+            printf("Received SIGINT signal\n");
             break;
         case SIGSEGV:
-            printf("Получен сигнал SIGSEGV\n");
+            printf("Received SIGSEGV signal\n");
             break;
         case SIGTERM:
-            printf("Получен сигнал SIGTERM\n");
+            printf("Received SIGTERM signal\n");
+            break;
+        default:
+            printf("Received unknown signal\n");
             break;
     }
 }
 
-int main() 
-{
-    // Инициализация обработчика 
+int main() {
     signal(SIGABRT, signal_handler);
     signal(SIGFPE, signal_handler);
     signal(SIGILL, signal_handler);
@@ -49,15 +39,33 @@ int main()
     signal(SIGSEGV, signal_handler);
     signal(SIGTERM, signal_handler);
 
-    // Выполнение программы
-    while (1) 
-    {
-        signal(SIGINT, signal_handler);//устанавливаем обработчик для сигнлана SIGINT
-        //посылаем сигнал
-        raise(SIGINT);
-        printf("Hello, world\n");// Здесь можно выполнять какие-то 
-        getch();
+    int user_input;
+    printf("Enter 1 to raise SIGABRT signal, 2 for SIGFPE, 3 for SIGILL, 4 for SIGINT, 5 for SIGSEGV, or 6 for SIGTERM: ");
+    scanf("%d", &user_input);
+
+    switch(user_input) {
+        case 1:
+            raise(SIGABRT);
+            break;
+        case 2:
+            raise(SIGFPE);
+            break;
+        case 3:
+            raise(SIGILL);
+            break;
+        case 4:
+            raise(SIGINT);
+            break;
+        case 5:
+            raise(SIGSEGV);
+            break;
+        case 6:
+            raise(SIGTERM);
+            break;
+        default:
+            printf("Invalid input. Exiting.\n");
+            break;
     }
+
     return 0;
 }
-
