@@ -1,2 +1,63 @@
 /*Написать программу, обрабатывающую получение сигналов (SIGABRT, SIGFPE, SIGILL, SIGINT, SIGSEGV, SIGTERM). 
 Также программа, может возбуждать эти сигна-лы по указанию пользователя. В качестве обработчика должно быть реализовано логи-рование (вывод на консоль).*/
+
+
+/******************************************************************************
+
+Welcome to GDB Online.
+  GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
+  C#, OCaml, VB, Perl, Swift, Prolog, Javascript, Pascal, COBOL, HTML, CSS, JS
+  Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <stdio.h>
+#include <stdio.h>
+#include <signal.h> // для работы с сигналами
+
+// Функция обработки сигнала
+void signal_handler(int signal) 
+{
+    switch (signal) {
+        case SIGABRT:
+            printf("Получен сигнал SIGABRT\n");
+            break;
+        case SIGFPE:
+            printf("Получен сигнал SIGFPE\n");
+            break;
+        case SIGILL:
+            printf("Получен сигнал SIGILL\n");
+            break;
+        case SIGINT:
+            printf("Получен сигнал SIGINT\n");
+            break;
+        case SIGSEGV:
+            printf("Получен сигнал SIGSEGV\n");
+            break;
+        case SIGTERM:
+            printf("Получен сигнал SIGTERM\n");
+            break;
+    }
+}
+
+int main() 
+{
+    // Инициализация обработчика 
+    signal(SIGABRT, signal_handler);
+    signal(SIGFPE, signal_handler);
+    signal(SIGILL, signal_handler);
+    signal(SIGINT, signal_handler);
+    signal(SIGSEGV, signal_handler);
+    signal(SIGTERM, signal_handler);
+
+    // Выполнение программы
+    while (1) 
+    {
+        signal(SIGINT, signal_handler);//устанавливаем обработчик для сигнлана SIGINT
+        //посылаем сигнал
+        raise(SIGINT);
+        printf("Hello, world\n");// Здесь можно выполнять какие-то 
+        getch();
+    }
+    return 0;
+}
+
