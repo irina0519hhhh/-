@@ -5,9 +5,9 @@
 #include <stdio.h>
 #include <setjmp.h>
 
-jmp_buf buf;
+jmp_buf buf; //объявляем переменную buf для нелокального перехода
 
-int fibonacci(int n) 
+int fib_sum(int n) //Функция fib_sum рекурсивно вычисляет сумму чисел Фибоначчи
 {
     if (n == 0) 
     {
@@ -17,7 +17,7 @@ int fibonacci(int n)
     {
         return 1;
     }
-    return fibonacci(n - 1) + fibonacci(n - 2);
+    return fib_sum(n - 1) + fib_sum(n - 2);
 }
 
 int main() 
@@ -30,7 +30,7 @@ int main()
     {
         for (int i = 1; i <= n; i++) 
         {
-            sum += fibonacci(i);
+            sum += fib_sum(i);
         }
     }
 
@@ -38,3 +38,5 @@ printf("Сумма чисел Фибоначчи до %d равна %d\n", n, su
 
 return 0;
 }
+//В main() мы устанавливаем setjmp(buf) и используем цикл для вычисления и накопления суммы. 
+Когда n достигает максимального значения, происходит переход на позицию setjmp(buf) с помощью longjmp(buf, 1), завершая рекурсию.
