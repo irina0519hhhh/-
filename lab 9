@@ -3,42 +3,68 @@
 Для разбора входной строки использовать функцию strok
 
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
-#include <ctype.h>
+#include <string.h>
 
-double parseExpression(char* expression) {
-    double result = 0.0;
-    int sign = 1;
-    char* token = strtok(expression, " +-");
+double calculate(char *expression) 
+{
+    char *token;
+    double result = 0;
+    char *delimiters = " ";
 
-    while (token != NULL) {
-        if (strcmp(token, "-") == 0) {
-            sign = -1;  // Помним, что следующее число будет отрицательным
-        } else if (strcmp(token, "+") == 0) {
-            sign = 1;  // Помним, что следующее число будет положительным
-        } else {
-            // Если первый символ в токене - это минус, меняем знак и обрезаем строку
-            if (token[0] == '-' && isdigit(token[1])) {
-                result += sign * atof(token + 1);
-            } else {
-                result += sign * atof(token); // Учитываем знак операнда
-            }
+    token = strtok(expression, delimiters);
+
+    result = atof(token); // Преобразуем первый токен в число
+    token = strtok(NULL, delimiters);
+
+    while (token != NULL) 
+    {
+        char op = token[0]; // Оператор
+        token = strtok(NULL, delimiters);
+        double num = atof(token); // Число
+
+        if (op == '+') {
+            result += num; // Сложение
+        } else if (op == '-') {
+            result -= num; // Вычитание
         }
-        token = strtok(NULL, " ");
+
+        token = strtok(NULL, delimiters); // Следующий токен
     }
 
     return result;
 }
 
+
+#include <stdio.h>
+#include <string.h>
+
+void replaceCommasWithDots(char* str) {
+    for (int i = 0; i < strlen(str); i++) {
+        if (str[i] == ',') {
+            str[i] = '.';
+        }
+    }
+}
+
 int main() {
-    char input[100];
-    printf("Введите арифметическое выражение: ");
-    fgets(input, 100, stdin);
-
-    double result = parseExpression(input);
-
-    printf("Результат: %f\n", result);
-
+    char str[100];
+    printf("Введите строку с запятыми: ");
+    fgets(str, sizeof(str), stdin);
+    
+    // Удаляем символ новой строки, добавленный fgets
+    size_t len = strlen(str);
+    if (len > 0 && str[len - 1] == '\n') {
+        str[len - 1] = '\0';
+    }
+    
+    replaceCommasWithDots(str);
+    
+    printf("Результат замены запятых на точки: %s\n", str);
+    
+    ////////
+    double result = calculate(str);
+    printf("Результат: %lf\n", result);
+    //////////
     return 0;
 }
