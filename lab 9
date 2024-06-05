@@ -62,9 +62,8 @@ int main() {
     
     printf("Результат замены запятых на точки: %s\n", str);
     
-    ////////
     double result = calculate(str);
     printf("Результат: %lf\n", result);
-    //////////
+  
     return 0;
 }
