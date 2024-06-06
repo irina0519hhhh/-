@@ -18,7 +18,7 @@ int main ()
     char line[256];
     FILE *file = fopen("input.txt", "wt");
     FILE *new_file = fopen("output.txt", "wt");
-    int *mass;
+    int *mass, **matrix; 
     int n;
 
     printf("Введите размер массива: ");
@@ -28,7 +28,6 @@ int main ()
     mass = (int *)malloc(n * sizeof(int));
    
     //1 Записываем случайные числа в файл
-    // fprintf(file, "массив чисел:\n");
     for (int i = 0; i < n; i++) {
         fprintf(file, "%d\n", rand() % 100); // случайное число
     }
@@ -79,11 +78,50 @@ int main ()
         }
     }
     
-    
-    
-  //4
-    fclose(file);
     fclose(new_file);
+    
+    
+  //4 матрица из вектора N
+    int m;
+    printf("Введите кол-во столбцов ");
+    scanf("%d", &m);
+    
+    
+    //выделяем память для матрицы 
+    matrix = (int**)malloc(n/m+1*sizeof(double*));
+    for(int i = 0; i < n/m+1; i++)
+    {
+        matrix[i] = (int*)malloc(n/m+1*sizeof(int));
+    }
+    
+    
+    // заполнение матрицы элементами из массива
+    int k = 0;
+    for (int i = 0; i < n/m+1; i++) { 
+        for (int j = 0; j < m; j++) { 
+            if (k < n) {
+                matrix[i][j] = mass[k++]; 
+            }
+        }
+    }
+    
+    // вывод матрицы на экран
+    for (int i = 0; i < n/m+1; i++) 
+    {
+        for (int j = 0; j < m; j++) 
+        {
+            printf("[%d]", matrix[i][j]);
+        }
+        printf("\n");
+    }
+    
+     // Освобождение памяти
+    for (int i = 0; i < n/m+1; i++) {
+        free(matrix[i]);
+    }
+    free(matrix);
+    
+    fclose(file);
     
     return 0;
 }
