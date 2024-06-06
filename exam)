@@ -1,9 +1,11 @@
-//создать файл input.txt, в который поместить N случайных чисел, размера, заданного с консоли. Массивы очистить. Закрыть файл
-//открыть файл input.txt и прочитать все значения. 
-//Все числа % на 5 заменить на слово "ПЯТЬ", % на 7 - на"СЕМЬ", % на 7 и 5 - "СЕМЬПЯТЬ". Вывести результат в файл output.txt
-//...........................
-//замерить время работы программы
-
+//1)создать файл input.txt, в который поместить N случайных чисел, размера, заданного с консоли. 
+//Массивы очистить. Закрыть файл
+//2)открыть файл input.txt и прочитать все значения.
+//3)Все числа % на 5 заменить на слово "ПЯТЬ", % на 7 - на"СЕМЬ", % на 7 и 5 - "СЕМЬПЯТЬ". 
+//Вывести результат в файл output.txt
+//4)из файла input.txt сформировать матрицу путем преобразования вектора N в M столбцов. 
+//Посчитать сумму строк и столбцов. Вывести матрицу и результат сложения на консоль.
+//5)замерить время работы программы
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -25,7 +27,7 @@ int main ()
     // Выделение памяти для одномерного массива
     mass = (int *)malloc(n * sizeof(int));
    
-    // Записываем случайные числа в файл
+    //1 Записываем случайные числа в файл
     fprintf(file, "массив чисел:\n");
     for (int i = 0; i < n; i++) {
         fprintf(file, "%d\n", rand() % 100); // случайное число от 0 до 9
@@ -37,32 +39,47 @@ int main ()
     // Освобождение выделенной памяти
     free(mass);
     
-    // Открываем файл и читаем значения на консоль
+    
+    //2 Открываем файл и читаем значения
+
     file = fopen("input.txt", "rt");
     
-    int result = atoi(line);
     while (fgets(line, 256, file)) 
     {
-        if (result == '\n')
-        {
-            printf("%d", result); // выводим числа
-        }
+        int len = strlen(line);
+        if (len > 0 && line[len - 1] == '\n'){
+            int result = atoi(line);
+            printf("%d\n", result); 
+        }    
     }
+     
+    fclose(file);
   
-    for (int i = 0; i < n; i++) 
-    {
-        if (mass[i] % 5 == 0 && mass[i] % 7 == 0) 
+  
+  //3
+    file = fopen("input.txt", "rt");
+    
+    for (int i = 0; i < n; i++) {
+        fgets(line, 256, file);
+        mass[i] = atoi(line);
+    }
+   
+    for (int i = 0; i < n; i++){
+        if (mass[i] % 7 == 0) 
         {
-            fprintf(new_file, "FIVESEVEN\n");
+            fprintf(new_file, "SEVEN\n");
         } else if (mass[i] % 5 == 0) { 
             fprintf(new_file, "FIVE\n");
-        } else if (mass[i] % 7 == 0) { 
-            fprintf(new_file, "SEVEN\n");
+        } else if (mass[i] % 5 == 0 && mass[i] % 7 == 0) { 
+            fprintf(new_file, "FIVESEVEN\n");
         } else {
             fprintf(new_file, "%d\n", mass[i]);
         }
     }
     
+    
+    
+  //4
     fclose(file);
     fclose(new_file);
     
