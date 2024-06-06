@@ -28,9 +28,9 @@ int main ()
     mass = (int *)malloc(n * sizeof(int));
    
     //1 Записываем случайные числа в файл
-    fprintf(file, "массив чисел:\n");
+    // fprintf(file, "массив чисел:\n");
     for (int i = 0; i < n; i++) {
-        fprintf(file, "%d\n", rand() % 100); // случайное число от 0 до 9
+        fprintf(file, "%d\n", rand() % 100); // случайное число
     }
    
     fclose(file);
@@ -40,7 +40,7 @@ int main ()
     free(mass);
     
     
-    //2 Открываем файл и читаем значения
+    //2 Открываем файл и читаем значения на консоль
 
     file = fopen("input.txt", "rt");
     
@@ -49,7 +49,9 @@ int main ()
         int len = strlen(line);
         if (len > 0 && line[len - 1] == '\n'){
             int result = atoi(line);
-            printf("%d\n", result); 
+            if(result != 0){
+                printf("%d\n", result); 
+            }
         }    
     }
      
@@ -65,13 +67,13 @@ int main ()
     }
    
     for (int i = 0; i < n; i++){
-        if (mass[i] % 7 == 0) 
+        if (mass[i] % 5 == 0 && mass[i] % 7 == 0) 
         {
-            fprintf(new_file, "SEVEN\n");
+            fprintf(new_file, "FIVESEVEN\n");
         } else if (mass[i] % 5 == 0) { 
             fprintf(new_file, "FIVE\n");
-        } else if (mass[i] % 5 == 0 && mass[i] % 7 == 0) { 
-            fprintf(new_file, "FIVESEVEN\n");
+        } else if (mass[i] % 7 == 0) { 
+            fprintf(new_file, "SEVEN\n");
         } else {
             fprintf(new_file, "%d\n", mass[i]);
         }
