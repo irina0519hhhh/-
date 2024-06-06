@@ -1,7 +1,7 @@
-
 //создать файл input.txt, в который поместить N случайных чисел, размера, заданного с консоли. Массивы очистить. Закрыть файл
 //открыть файл input.txt и прочитать все значения. 
 //Все числа % на 5 заменить на слово "ПЯТЬ", % на 7 - на"СЕМЬ", % на 7 и 5 - "СЕМЬПЯТЬ". Вывести результат в файл output.txt
+//...........................
 //замерить время работы программы
 
 
@@ -10,60 +10,61 @@
 #include <string.h>
 #include <time.h>
 
+
 int main ()
 {
     char line[256];
-    
     FILE *file = fopen("input.txt", "wt");
-    int n, i, j; 
+    FILE *new_file = fopen("output.txt", "wt");
+    int *mass;
+    int n;
+
     printf("Введите размер массива: ");
     scanf("%d", &n);
 
-    int mass[n];
-    for(i = 0; i < n; i++)
-    {
-        int r = rand() % 10;
-        mass[i] = r;
-    }
-    for(j = 0; j < n; j++)
-    {
-        printf("%d\n", mass[j]);
-    }
+    // Выделение памяти для одномерного массива
+    mass = (int *)malloc(n * sizeof(int));
    
- // Записываем случайные числа в файл
+    // Записываем случайные числа в файл
     fprintf(file, "массив чисел:\n");
     for (int i = 0; i < n; i++) {
-        fprintf(file, "%d\n", rand() % 10); // случайное число от 0 до 9
+        fprintf(file, "%d\n", rand() % 100); // случайное число от 0 до 9
     }
    
     fclose(file);
-     
-     
-    // // Открываем файл для чтения
-    // file = fopen("input.txt", "rt");
+    printf("Данные записаны в файл input.txt.\n");
     
-    for (int k = 0; k < n; k++) {
-        if (mass[k] % 7 == 0) {
-            fprintf(file, "SEVEN ");
-        } else if (mass[k] % 5 == 0) {
-            fprintf(file, "FIVE ");
-        } else {
-            fprintf(file, "%d ", mass[k]);
+    // Освобождение выделенной памяти
+    free(mass);
+    
+    // Открываем файл и читаем значения на консоль
+    file = fopen("input.txt", "rt");
+    
+    int result = atoi(line);
+    while (fgets(line, 256, file)) 
+    {
+        if (result == '\n')
+        {
+            printf("%d", result); // выводим числа
         }
     }
-
-     printf("Данные записаны в файл input.txt.\n");
+  
+    for (int i = 0; i < n; i++) 
+    {
+        if (mass[i] % 5 == 0 && mass[i] % 7 == 0) 
+        {
+            fprintf(new_file, "FIVESEVEN\n");
+        } else if (mass[i] % 5 == 0) { 
+            fprintf(new_file, "FIVE\n");
+        } else if (mass[i] % 7 == 0) { 
+            fprintf(new_file, "SEVEN\n");
+        } else {
+            fprintf(new_file, "%d\n", mass[i]);
+        }
+    }
     
-    // for (int k = 0; k < n; k++)
-    // {
-    //     if(mass[k] % 5 == 0)
-    //     {
-    //         fprintf(file, "%s\n", str1);
-    //     }
-    //     if(mass[k] % 7 == 0)
-    //     {
-    //         fprintf(file, "%s\n", str2);
-    //     }
-    // }
+    fclose(file);
+    fclose(new_file);
+    
     return 0;
 }
