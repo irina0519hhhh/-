@@ -1,87 +1,127 @@
-/*ЗАДАНИЕ 5
-Разместить в динамической памяти 2 массива – 2 матрицы размерностью n на n с элементами типа double (значения n и элементы массивов ввести с консоли). 
-А также ввести с консоли знак операции: '+', '-' или '*'. 
-
-//ОТДЕЛЬНЫЙ МОДУЛЬ// 
-Написать функцию, вычисляющую сумму, разность или произведение данных матриц (их передать по указателю) и воз-вращающую указатель на массив-результат. 
-Разместить эту функцию в отдельном мо-дуле (отличном от того, где располагается функция main()). 
-Выдать на консоль значения полученного вектора.*/
-
+//1)создать файл input.txt, в который поместить N случайных чисел, размера, заданного с консоли. 
+//Массивы очистить. Закрыть файл
+//2)открыть файл input.txt и прочитать все значения.
+//3)Все числа % на 5 заменить на слово "ПЯТЬ", % на 7 - на"СЕМЬ", % на 7 и 5 - "СЕМЬПЯТЬ". 
+//Вывести результат в файл output.txt
+//4)из файла input.txt сформировать матрицу путем преобразования вектора N в M столбцов. 
+//Посчитать сумму строк и столбцов. Вывести матрицу и результат сложения на консоль.
+//5)замерить время работы программы
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include <string.h>
-#include "FUNC"
+#include <time.h>
 
 
-int main()
+int main ()
 {
+    char line[256];
+    FILE *file = fopen("input.txt", "wt");
+    FILE *new_file = fopen("output.txt", "wt");
+    int *mass, **matrix; 
     int n;
-    char sign;
-    int i, j, k, t, m;
-    double **sum, **min, **pr, **mass1, **mass2, **result, **result1, **result2, **result3;
-    printf("Enter n: ");
+
+    printf("Введите размер массива: ");
     scanf("%d", &n);
 
-   //выделяем память для матрицы 1 
-    mass1 = (double**)malloc(n*sizeof(double*));
-    for(i = 0; i < n; i++)
-    {
-        mass1[i] = (double*)malloc(n*sizeof(double));
+    // Выделение памяти для одномерного массива
+    mass = (int *)malloc(n * sizeof(int));
+   
+    //1 Записываем случайные числа в файл
+    for (int i = 0; i < n; i++) {
+        fprintf(file, "%d\n", rand() % 100); // случайное число
     }
+   
+    fclose(file);
+    printf("Данные записаны в файл input.txt.\n");
+    
+    // Освобождение выделенной памяти
+    free(mass);
+    
+    
+    //2 Открываем файл и читаем значения на консоль
 
-    //выделяем память  для матрицы 2 
-     mass2 = (double**)malloc(n*sizeof(double*));
-     for(i = 0; i < n; i++)
-        {
-            mass2[i] = (double*)malloc(n*sizeof(double));
+    file = fopen("input.txt", "rt");
+    
+    while (fgets(line, 256, file)) 
+    {
+        int len = strlen(line);
+        if (len > 0 && line[len - 1] == '\n'){
+            int result = atoi(line);
+            if(result != 0){
+                printf("%d\n", result); 
+            }
         }    
-
-    //заполнение матриц
-    for (i = 0; i < n; i++)
-    {
-	    for(j = 0; j < n; j++)
-	    {
-    	    printf("mass1[%d][%d]", i+1, j+1);
-    	    scanf("%lf", &mass1[i][j]);
-	    }
     }
-	for (k = 0; k < n; k++)
-	{
-	    for(t = 0; t < n; t++)
-	    {
-		printf("mass2[%d][%d]", k+1, t+1);
-		scanf("%lf", &mass2[k][t]);
-	    }
-   	}
-        printf("Enter mass1 values: \n");
-        print_matrix(n, mass1);
-        printf("Enter mass2 values: \n");
-        print_matrix(n, mass2);
-
-		printf("Enter '+', '- 'or '*' \n");
-		scanf(" %c", &sign);
-
-		
-		if (sign == '+')
-		{  
-		    result1 =  mass_sum(mass1, mass2, n); 
-            print_matrix(n, result1);
-		}
-		 if (sign == '-')
-		{
-		    result1 =  mass_min(mass1, mass2, n); 
-            print_matrix(n, result1);
-		}
-		 if (sign == '*')
-		{
-		    result1 =  mass_pr(mass1, mass2, n); 
-            print_matrix(n, result1);
-	    }
-	    
-	    free_matrix(result1);
-	    free_matrix(mass1);
-	    free_matrix(mass2);
-return 0;
+     
+    fclose(file);
+  
+  
+  //3
+    file = fopen("input.txt", "rt");
+    
+    for (int i = 0; i < n; i++) {
+        fgets(line, 256, file);
+        mass[i] = atoi(line);
+    }
+   
+    for (int i = 0; i < n; i++){
+        if (mass[i] % 5 == 0 && mass[i] % 7 == 0) 
+        {
+            fprintf(new_file, "FIVESEVEN\n");
+        } else if (mass[i] % 5 == 0) { 
+            fprintf(new_file, "FIVE\n");
+        } else if (mass[i] % 7 == 0) { 
+            fprintf(new_file, "SEVEN\n");
+        } else {
+            fprintf(new_file, "%d\n", mass[i]);
+        }
+    }
+    
+    fclose(new_file);
+    
+    
+  //4 матрица из вектора N
+    int m;
+    printf("Введите кол-во столбцов ");
+    scanf("%d", &m);
+    
+    
+    //выделяем память для матрицы 
+    matrix = (int**)malloc(n/m+1*sizeof(double*));
+    for(int i = 0; i < n/m+1; i++)
+    {
+        matrix[i] = (int*)malloc(n/m+1*sizeof(int));
+    }
+    
+    
+    // заполнение матрицы элементами из массива
+    int k = 0;
+    for (int i = 0; i < n/m+1; i++) { 
+        for (int j = 0; j < m; j++) { 
+            if (k < n) {
+                matrix[i][j] = mass[k++]; 
+            }
+        }
+    }
+    
+    // вывод матрицы на экран
+    for (int i = 0; i < n/m+1; i++) 
+    {
+        for (int j = 0; j < m; j++) 
+        {
+            printf("[%d]", matrix[i][j]);
+        }
+        printf("\n");
+    }
+    
+    //  // Освобождение памяти
+    for (int i = 0; i < n/m+1; i++) {
+        free(matrix[i]);
+    }
+    free(matrix);
+    
+    fclose(file);
+    
+    return 0;
 }
