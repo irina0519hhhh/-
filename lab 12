@@ -73,19 +73,19 @@ struct tm first_day = {0};
 first_day.tm_year = year - 1900;
 first_day.tm_mon = month - 1;
 first_day.tm_mday = 1;
-time_t first_day_time = mktime(&first_day);
-struct tm *first_day_result = localtime(&first_day_time);
+time_t first_day_time = mktime(&first_day); //mktime для преобразования структуры first_day в тип time_t
+struct tm *first_day_result = localtime(&first_day_time); //localtime для пр-я времени из time_t обратно в лока предст времени с помощью struct tm.
 
-int first_day_weekday = first_day_result->tm_wday;
+int first_day_weekday = first_day_result->tm_wday; //содержит день недели для первого дня месяца (0 - воскресенье, 1 - понедельник и т.д.).
 
-for (int i = 0; i < first_day_weekday; i++) 
+for (int i = 0; i < first_day_weekday; i++) //выводит пробелы до начала месяца
 {
     printf("   ");
 }
 
 for (int i = 1; i <= 31; i++) 
 {
-    struct tm current_day = {0};
+    struct tm current_day = {0}; ////для каждого дня создается структура current_day
     current_day.tm_year = year - 1900;
     current_day.tm_mon = month - 1;
     current_day.tm_mday = i;
@@ -105,7 +105,7 @@ for (int i = 1; i <= 31; i++)
         printf("%d ", i);
     }
     
-    if ((first_day_weekday + i) % 7 == 0) 
+    if ((first_day_weekday + i) % 7 == 0) //= нужно перейти на новую строку
     {
         printf("\n");
     }
