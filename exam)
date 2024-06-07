@@ -11,10 +11,16 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <math.h>
 
 
 int main ()
 {
+    
+    srand(time(NULL));
+    time_t t0 = time(0);
+    
+    
     char line[256];
     FILE *file = fopen("input.txt", "wt");
     FILE *new_file = fopen("output.txt", "wt");
@@ -33,30 +39,10 @@ int main ()
     }
    
     fclose(file);
-    printf("Данные записаны в файл input.txt.\n");
     
     // Освобождение выделенной памяти
-    free(mass);
-    
-    
-    //2 Открываем файл и читаем значения на консоль
 
-    file = fopen("input.txt", "rt");
     
-    while (fgets(line, 256, file)) 
-    {
-        int len = strlen(line);
-        if (len > 0 && line[len - 1] == '\n'){
-            int result = atoi(line);
-            if(result != 0){
-                printf("%d\n", result); 
-            }
-        }    
-    }
-     
-    fclose(file);
-  
-  
   //3
     file = fopen("input.txt", "rt");
     
@@ -82,23 +68,19 @@ int main ()
     
     
   //4 матрица из вектора N
-    int m;
-    printf("Введите кол-во столбцов ");
-    scanf("%d", &m);
-    
+    int r = floor(sqrt(n));
     
     //выделяем память для матрицы 
-    matrix = (int**)malloc(n/m+1*sizeof(double*));
-    for(int i = 0; i < n/m+1; i++)
+    matrix = (int**)malloc(r*sizeof(int*));
+    for(int i = 0; i < r; i++)
     {
-        matrix[i] = (int*)malloc(n/m+1*sizeof(int));
+        matrix[i] = (int*)malloc(r*sizeof(int));
     }
-    
-    
+     
     // заполнение матрицы элементами из массива
     int k = 0;
-    for (int i = 0; i < n/m+1; i++) { 
-        for (int j = 0; j < m; j++) { 
+    for (int i = 0; i < r; i++) { 
+        for (int j = 0; j < r; j++) { 
             if (k < n) {
                 matrix[i][j] = mass[k++]; 
             }
@@ -106,22 +88,40 @@ int main ()
     }
     
     // вывод матрицы на экран
-    for (int i = 0; i < n/m+1; i++) 
+    for (int i = 0; i < r; i++) 
     {
-        for (int j = 0; j < m; j++) 
+        for (int j = 0; j < r; j++) 
         {
             printf("[%d]", matrix[i][j]);
         }
         printf("\n");
     }
     
+    
+    //сумма строк 
+    int summa = 0;
+    for (int i = 0; i < r; i++){
+        for (int j = 0; j < r; j++){
+        summa += matrix[i][j];
+        }
+    }
+    printf("Сумма строк и столбцов матрицы: %d\n\n", summa);
+    
+    
     // Освобождение памяти
-    for (int i = 0; i < n/m+1; i++) {
+    for (int i = 0; i < r; i++) {
         free(matrix[i]);
     }
     free(matrix);
-    
+    free(mass);
+
     fclose(file);
+    
+    
+    time_t t1 = time(0);
+    double time_in_seconds = difftime(t1, t0);
+    printf("Время выполнения программы: %f сек", time_in_seconds);
+    
     
     return 0;
 }
